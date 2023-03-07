@@ -7,21 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		609E9D1329B7B034001D3812 /* ForgotPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E9D1229B7B034001D3812 /* ForgotPasswordController.swift */; };
+		609E9D1529B7B047001D3812 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E9D1429B7B047001D3812 /* LoginController.swift */; };
+		609E9D1829B7B06D001D3812 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E9D1729B7B06D001D3812 /* RegisterController.swift */; };
+		609E9D1A29B7B07F001D3812 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E9D1929B7B07F001D3812 /* HomeController.swift */; };
+		609E9D1D29B7B236001D3812 /* AuthHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E9D1C29B7B236001D3812 /* AuthHeaderView.swift */; };
+		609E9D1F29B7DF7C001D3812 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E9D1E29B7DF7C001D3812 /* CustomTextField.swift */; };
+		609E9D2129B7E7B4001D3812 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E9D2029B7E7B4001D3812 /* CustomButton.swift */; };
 		60A7769E29B5FAFD00A8DB05 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 60A7769D29B5FAFD00A8DB05 /* GoogleService-Info.plist */; };
 		60AA3CCA29B5F7DC008F05DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60AA3CC929B5F7DC008F05DE /* AppDelegate.swift */; };
 		60AA3CCC29B5F7DC008F05DE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60AA3CCB29B5F7DC008F05DE /* SceneDelegate.swift */; };
-		60AA3CCE29B5F7DC008F05DE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60AA3CCD29B5F7DC008F05DE /* ViewController.swift */; };
 		60AA3CD329B5F7DD008F05DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60AA3CD229B5F7DD008F05DE /* Assets.xcassets */; };
 		60AA3CD629B5F7DD008F05DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60AA3CD429B5F7DD008F05DE /* LaunchScreen.storyboard */; };
 		942055F0DAEFB8C77C54DEE3 /* Pods_MyPick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69C585ADED4374E65E5177B4 /* Pods_MyPick.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		609E9D1229B7B034001D3812 /* ForgotPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordController.swift; sourceTree = "<group>"; };
+		609E9D1429B7B047001D3812 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		609E9D1729B7B06D001D3812 /* RegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
+		609E9D1929B7B07F001D3812 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		609E9D1C29B7B236001D3812 /* AuthHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthHeaderView.swift; sourceTree = "<group>"; };
+		609E9D1E29B7DF7C001D3812 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		609E9D2029B7E7B4001D3812 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		60A7769D29B5FAFD00A8DB05 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		60AA3CC629B5F7DC008F05DE /* MyPick.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyPick.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60AA3CC929B5F7DC008F05DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		60AA3CCB29B5F7DC008F05DE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		60AA3CCD29B5F7DC008F05DE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		60AA3CD229B5F7DD008F05DE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		60AA3CD529B5F7DD008F05DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		60AA3CD729B5F7DD008F05DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -50,9 +62,24 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		609E9D1B29B7B0AB001D3812 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				609E9D1C29B7B236001D3812 /* AuthHeaderView.swift */,
+				609E9D1E29B7DF7C001D3812 /* CustomTextField.swift */,
+				609E9D2029B7E7B4001D3812 /* CustomButton.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		60A5E74029B740210022434E /* Supporting */ = {
 			isa = PBXGroup;
 			children = (
+				60AA3CC929B5F7DC008F05DE /* AppDelegate.swift */,
+				60AA3CCB29B5F7DC008F05DE /* SceneDelegate.swift */,
+				60AA3CD229B5F7DD008F05DE /* Assets.xcassets */,
+				60A7769D29B5FAFD00A8DB05 /* GoogleService-Info.plist */,
+				60AA3CD429B5F7DD008F05DE /* LaunchScreen.storyboard */,
 			);
 			path = Supporting;
 			sourceTree = "<group>";
@@ -78,14 +105,13 @@
 		60AA3CC829B5F7DC008F05DE /* MyPick */ = {
 			isa = PBXGroup;
 			children = (
-				60A5E74029B740210022434E /* Supporting */,
-				60AA3CC929B5F7DC008F05DE /* AppDelegate.swift */,
-				60AA3CCB29B5F7DC008F05DE /* SceneDelegate.swift */,
-				60AA3CCD29B5F7DC008F05DE /* ViewController.swift */,
-				60AA3CD229B5F7DD008F05DE /* Assets.xcassets */,
-				60A7769D29B5FAFD00A8DB05 /* GoogleService-Info.plist */,
-				60AA3CD429B5F7DD008F05DE /* LaunchScreen.storyboard */,
+				609E9D1229B7B034001D3812 /* ForgotPasswordController.swift */,
+				609E9D1929B7B07F001D3812 /* HomeController.swift */,
+				609E9D1429B7B047001D3812 /* LoginController.swift */,
+				609E9D1729B7B06D001D3812 /* RegisterController.swift */,
+				609E9D1B29B7B0AB001D3812 /* Views */,
 				60AA3CD729B5F7DD008F05DE /* Info.plist */,
+				60A5E74029B740210022434E /* Supporting */,
 			);
 			path = MyPick;
 			sourceTree = "<group>";
@@ -214,9 +240,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				60AA3CCE29B5F7DC008F05DE /* ViewController.swift in Sources */,
+				609E9D1329B7B034001D3812 /* ForgotPasswordController.swift in Sources */,
+				609E9D1A29B7B07F001D3812 /* HomeController.swift in Sources */,
+				609E9D2129B7E7B4001D3812 /* CustomButton.swift in Sources */,
+				609E9D1829B7B06D001D3812 /* RegisterController.swift in Sources */,
 				60AA3CCA29B5F7DC008F05DE /* AppDelegate.swift in Sources */,
+				609E9D1F29B7DF7C001D3812 /* CustomTextField.swift in Sources */,
 				60AA3CCC29B5F7DC008F05DE /* SceneDelegate.swift in Sources */,
+				609E9D1529B7B047001D3812 /* LoginController.swift in Sources */,
+				609E9D1D29B7B236001D3812 /* AuthHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
