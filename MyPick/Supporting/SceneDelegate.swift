@@ -16,11 +16,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else {return}
         let window = UIWindow(windowScene: windowScene)
         
-        let vc = LoginController()
+        let vc = LoginController() //login
         let nav = UINavigationController(rootViewController: vc)
         nav.modalPresentationStyle = .fullScreen
         
-        window.rootViewController = nav
+        window.rootViewController = nav//nav
         self.window = window
         self.window?.makeKeyAndVisible()
     }

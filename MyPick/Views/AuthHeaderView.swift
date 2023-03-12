@@ -23,7 +23,7 @@ class AuthHeaderView: UIView {
         let label = UILabel()
         label.textColor = .label
         label.textAlignment = .center
-        label.font = .systemFont(ofSize:27, weight: .bold)
+        label.font = .systemFont(ofSize: 27, weight: .bold)
         label.text = "Error"
         return label
     }()
@@ -32,7 +32,7 @@ class AuthHeaderView: UIView {
         let label = UILabel()
         label.textColor = .secondaryLabel
         label.textAlignment = .center
-        label.font = .systemFont(ofSize:18, weight: .bold)
+        label.font = .systemFont(ofSize: 18, weight: .bold)
         label.text = "Error"
         return label
     }()
