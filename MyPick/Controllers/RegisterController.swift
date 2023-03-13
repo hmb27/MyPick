@@ -49,7 +49,7 @@ class RegisterController: UIViewController {
         self.termsTextView.delegate = self
         self.signUpButton.addTarget(self, action: #selector(didTapSignUp), for: .touchUpInside)
         self.signInButton.addTarget(self, action: #selector(didTapSignIn), for: .touchUpInside)
-     
+        
         
     }
     
@@ -62,7 +62,7 @@ class RegisterController: UIViewController {
         //self.didTapSignUp()
         
     }
-
+    
     
     //MARK: -UI Setup
     private func setupUI() {
@@ -75,7 +75,7 @@ class RegisterController: UIViewController {
         self.view.addSubview(signUpButton)
         self.view.addSubview(termsTextView)
         self.view.addSubview(signInButton)
-
+        
         
         self.headerView.translatesAutoresizingMaskIntoConstraints = false
         self.usernameField.translatesAutoresizingMaskIntoConstraints = false
@@ -126,9 +126,50 @@ class RegisterController: UIViewController {
     
     //MARK: Selectors
     @objc func didTapSignUp() {
-        print("DEBUG PRINT:", "didTapSignUp")
+        let registerUserRequest = RegisterUserRequest(
+            username:self.usernameField.text ?? "",
+            email: self.emailField.text ?? "",
+            password: self.passwordField.text ?? ""
+        )
+        
+        //username check
+        if !Validator.isValidUsername(for: registerUserRequest.username) {
+            AlertManager.showInvalidUsername(on: self)
+            return
+        }
+        
+        //email check
+        if !Validator.isValidEmail(for: registerUserRequest.email) {
+            AlertManager.showInvalidEmailAlert(on: self)
+            return
+        }
+        
+        //password check
+        if !Validator.isPasswordValid(for: registerUserRequest.password) {
+            AlertManager.showInvalidPasswordAlert(on: self)
+            return
+        }
+        
+        AuthService.shared.registerUser(with: registerUserRequest) { [weak self]
+            wasRegistered, error in
+            guard let self = self else { return }
+            
+            if let error = error {
+                AlertManager.showRegistrationErrorAlert(on: self, with: error)
+                return
+            }
+            
+            if wasRegistered {
+                if let sceneDelegate = self.view.window?.windowScene?.delegate
+                    as? SceneDelegate {
+                    sceneDelegate.checkAuthentication()
+                }
+            } else {
+                AlertManager.showRegistrationErrorAlert(on: self)
+            }
+            }
+        }
 
-    }
     @objc private func didTapSignIn() {
         self.navigationController?.popToRootViewController(animated: true)
         
