@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		60426C1529C0878B0026EC1E /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60426C1429C0878B0026EC1E /* SearchController.swift */; };
+		60426C1929C0C7FD0026EC1E /* TrendingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60426C1829C0C7FD0026EC1E /* TrendingController.swift */; };
+		60426C1B29C0C80A0026EC1E /* AccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60426C1A29C0C80A0026EC1E /* AccountController.swift */; };
 		609A642929BA641500438F35 /* WebViewerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609A642829BA641500438F35 /* WebViewerController.swift */; };
 		609E9D1329B7B034001D3812 /* ForgotPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E9D1229B7B034001D3812 /* ForgotPasswordController.swift */; };
 		609E9D1529B7B047001D3812 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E9D1429B7B047001D3812 /* LoginController.swift */; };
@@ -30,6 +33,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		60426C1429C0878B0026EC1E /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
+		60426C1829C0C7FD0026EC1E /* TrendingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingController.swift; sourceTree = "<group>"; };
+		60426C1A29C0C80A0026EC1E /* AccountController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountController.swift; sourceTree = "<group>"; };
 		609A642829BA641500438F35 /* WebViewerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewerController.swift; sourceTree = "<group>"; };
 		609E9D1229B7B034001D3812 /* ForgotPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordController.swift; sourceTree = "<group>"; };
 		609E9D1429B7B047001D3812 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
@@ -93,6 +99,9 @@
 				609E9D1929B7B07F001D3812 /* HomeController.swift */,
 				609E9D1729B7B06D001D3812 /* RegisterController.swift */,
 				609E9D1429B7B047001D3812 /* LoginController.swift */,
+				60426C1429C0878B0026EC1E /* SearchController.swift */,
+				60426C1829C0C7FD0026EC1E /* TrendingController.swift */,
+				60426C1A29C0C80A0026EC1E /* AccountController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -283,8 +292,11 @@
 				60A5435A29BE7D5C00B5A9CC /* AuthService.swift in Sources */,
 				60BDCDB629BF70E2004AFB34 /* User.swift in Sources */,
 				60BDCDB229BF2BD2004AFB34 /* LoginUserRequest.swift in Sources */,
+				60426C1529C0878B0026EC1E /* SearchController.swift in Sources */,
 				609E9D2129B7E7B4001D3812 /* CustomButton.swift in Sources */,
 				609E9D1829B7B06D001D3812 /* RegisterController.swift in Sources */,
+				60426C1929C0C7FD0026EC1E /* TrendingController.swift in Sources */,
+				60426C1B29C0C80A0026EC1E /* AccountController.swift in Sources */,
 				60BDCDB429BF3983004AFB34 /* Validator.swift in Sources */,
 				60AA3CCA29B5F7DC008F05DE /* AppDelegate.swift in Sources */,
 				609E9D1F29B7DF7C001D3812 /* CustomTextField.swift in Sources */,

@@ -18,11 +18,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.checkAuthentication()
     }
     
+    
+    
     private func setupWindow(with scene: UIScene) {
         guard let windowScene = (scene as? UIWindowScene) else {return}
         let window = UIWindow(windowScene: windowScene)
         self.window = window
         self.window?.makeKeyAndVisible()
+       // self.window?.rootViewController = customTabBarController()
     }
     
     public func checkAuthentication() {
