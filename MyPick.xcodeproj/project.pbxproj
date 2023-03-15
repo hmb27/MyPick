@@ -10,6 +10,8 @@
 		60426C1529C0878B0026EC1E /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60426C1429C0878B0026EC1E /* SearchController.swift */; };
 		60426C1929C0C7FD0026EC1E /* TrendingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60426C1829C0C7FD0026EC1E /* TrendingController.swift */; };
 		60426C1B29C0C80A0026EC1E /* AccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60426C1A29C0C80A0026EC1E /* AccountController.swift */; };
+		60426C1D29C0E4AA0026EC1E /* ListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60426C1C29C0E4AA0026EC1E /* ListModel.swift */; };
+		60426C1F29C0E5900026EC1E /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60426C1E29C0E5900026EC1E /* Services.swift */; };
 		609A642929BA641500438F35 /* WebViewerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609A642829BA641500438F35 /* WebViewerController.swift */; };
 		609E9D1329B7B034001D3812 /* ForgotPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E9D1229B7B034001D3812 /* ForgotPasswordController.swift */; };
 		609E9D1529B7B047001D3812 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E9D1429B7B047001D3812 /* LoginController.swift */; };
@@ -36,6 +38,8 @@
 		60426C1429C0878B0026EC1E /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		60426C1829C0C7FD0026EC1E /* TrendingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingController.swift; sourceTree = "<group>"; };
 		60426C1A29C0C80A0026EC1E /* AccountController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountController.swift; sourceTree = "<group>"; };
+		60426C1C29C0E4AA0026EC1E /* ListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListModel.swift; sourceTree = "<group>"; };
+		60426C1E29C0E5900026EC1E /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 		609A642829BA641500438F35 /* WebViewerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewerController.swift; sourceTree = "<group>"; };
 		609E9D1229B7B034001D3812 /* ForgotPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordController.swift; sourceTree = "<group>"; };
 		609E9D1429B7B047001D3812 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
@@ -112,6 +116,8 @@
 				60A5435C29BE7F8D00B5A9CC /* RegisterUserRequest.swift */,
 				60BDCDB129BF2BD2004AFB34 /* LoginUserRequest.swift */,
 				60BDCDB529BF70E2004AFB34 /* User.swift */,
+				60426C1C29C0E4AA0026EC1E /* ListModel.swift */,
+				60426C1E29C0E5900026EC1E /* Services.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -296,6 +302,7 @@
 				609E9D2129B7E7B4001D3812 /* CustomButton.swift in Sources */,
 				609E9D1829B7B06D001D3812 /* RegisterController.swift in Sources */,
 				60426C1929C0C7FD0026EC1E /* TrendingController.swift in Sources */,
+				60426C1F29C0E5900026EC1E /* Services.swift in Sources */,
 				60426C1B29C0C80A0026EC1E /* AccountController.swift in Sources */,
 				60BDCDB429BF3983004AFB34 /* Validator.swift in Sources */,
 				60AA3CCA29B5F7DC008F05DE /* AppDelegate.swift in Sources */,
@@ -305,6 +312,7 @@
 				609E9D1529B7B047001D3812 /* LoginController.swift in Sources */,
 				609A642929BA641500438F35 /* WebViewerController.swift in Sources */,
 				609E9D1D29B7B236001D3812 /* AuthHeaderView.swift in Sources */,
+				60426C1D29C0E4AA0026EC1E /* ListModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
