@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct services: Identifiable {
+struct Service: Identifiable {
     
     var id: String
     var name: String

@@ -9,10 +9,9 @@ import UIKit
 import FirebaseStorage
 import FirebaseFirestore
 
-class ViewModel: UIViewController {
+class ListModel: ObservableObject{
     
-    @Published var Services = [services]()
-    
+    @Published var services = [Service]()
 
     private var db = Firestore.firestore()
     
@@ -24,15 +23,17 @@ class ViewModel: UIViewController {
                 //handle error
             }
         
-        self.Services = documents.map { (queryDocumentSnapshot) -> services in
+        self.services = documents.map { (queryDocumentSnapshot) -> Service in
             let data = queryDocumentSnapshot.data()
-            let id = data["id"] as? String ?? ""
+            
             let name = data["name"] as? String ?? ""
             let url = data["url"] as? String ?? ""
-            return services(id: id, name: name, url: url)
+            
+            return Service(name: name, url: url)
+        }
+        
+        
         }
         }
         
     }
-    
-}

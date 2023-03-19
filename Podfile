@@ -13,5 +13,6 @@ target 'MyPick' do
 	pod 'FirebaseFirestore'
 	pod 'FirebaseStorage'
 	pod 'FirebaseCore'
+	pod 'FirebaseDatabase'
 
 end
