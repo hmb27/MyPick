@@ -15,11 +15,9 @@ class LoginController: UIViewController {
     private let emailField = CustomTextField(fieldType: .email)
     private let passwordField = CustomTextField(fieldType: .password)
     
-    private let signInButton = CustomButton(title: "Sign In", hasBackground: true, fontSize: .big)
-    private let newUserButton = CustomButton(title: "New User? Create Account. ", fontSize: .med)
-    private let forgotPasswordButton = CustomButton(title: "Forgot Password?", fontSize: .small)
-    
-    
+    private let signInButton = TableButton(title: "Sign In", hasBackground: true, fontSize: .big)
+    private let newUserButton = TableButton(title: "New User? Create Account. ", fontSize: .med)
+    private let forgotPasswordButton = TableButton(title: "Forgot Password?", fontSize: .small)
     
     
     //MARK: Lifecycle

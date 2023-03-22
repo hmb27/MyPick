@@ -1,14 +1,14 @@
 //
-//  CustomButton.swift
+//  ServiceButton.swift
 //  MyPick
 //
-//  Created by Holly McBride on 07/03/2023.
+//  Created by Holly McBride on 22/03/2023.
 //
 
 import UIKit
 
-class CustomButton: UIButton {
-
+class ServiceButton: UIButton {
+    
     enum FontSize {
         case big
         case med
@@ -21,9 +21,9 @@ class CustomButton: UIButton {
         self.layer.cornerRadius = 12
         self.layer.masksToBounds = true
         
-        self.backgroundColor = hasBackground ? .systemPurple : .clear
+        self.backgroundColor = hasBackground ? .white : .clear
         
-        let titleColor: UIColor = hasBackground ? .white : .systemPurple
+        let titleColor: UIColor = hasBackground ? .black: .white
         self.setTitleColor(titleColor, for: .normal)
         
         switch fontSize {

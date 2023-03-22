@@ -7,9 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		60426C1529C0878B0026EC1E /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60426C1429C0878B0026EC1E /* SearchController.swift */; };
+		60426C1529C0878B0026EC1E /* ServiceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60426C1429C0878B0026EC1E /* ServiceList.swift */; };
 		60426C1929C0C7FD0026EC1E /* TrendingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60426C1829C0C7FD0026EC1E /* TrendingController.swift */; };
 		60426C1B29C0C80A0026EC1E /* AccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60426C1A29C0C80A0026EC1E /* AccountController.swift */; };
+		6075ADF629CBB2B00073D981 /* TableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6075ADF529CBB2B00073D981 /* TableButton.swift */; };
+		6075ADF829CBB9410073D981 /* serviceHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6075ADF729CBB9410073D981 /* serviceHeaderView.swift */; };
+		6075ADFA29CBBC520073D981 /* ServiceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6075ADF929CBBC520073D981 /* ServiceButton.swift */; };
+		6075ADFC29CBBDCC0073D981 /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6075ADFB29CBBDCC0073D981 /* SearchController.swift */; };
 		609705FA29C747C100E2A5FD /* DataCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 609705F929C747C100E2A5FD /* DataCell.xib */; };
 		609A642929BA641500438F35 /* WebViewerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609A642829BA641500438F35 /* WebViewerController.swift */; };
 		609E9D1329B7B034001D3812 /* ForgotPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E9D1229B7B034001D3812 /* ForgotPasswordController.swift */; };
@@ -18,7 +22,7 @@
 		609E9D1A29B7B07F001D3812 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E9D1929B7B07F001D3812 /* HomeController.swift */; };
 		609E9D1D29B7B236001D3812 /* AuthHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E9D1C29B7B236001D3812 /* AuthHeaderView.swift */; };
 		609E9D1F29B7DF7C001D3812 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E9D1E29B7DF7C001D3812 /* CustomTextField.swift */; };
-		609E9D2129B7E7B4001D3812 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E9D2029B7E7B4001D3812 /* CustomButton.swift */; };
+		60A174F029CB96B700D7E519 /* serviceLogIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A174EF29CB96B700D7E519 /* serviceLogIn.swift */; };
 		60A23AE629C3C00F004BDD20 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A23AE529C3C00F004BDD20 /* Service.swift */; };
 		60A5435829BE6E4A00B5A9CC /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A5435729BE6E4A00B5A9CC /* AlertManager.swift */; };
 		60A5435A29BE7D5C00B5A9CC /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A5435929BE7D5C00B5A9CC /* AuthService.swift */; };
@@ -36,9 +40,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		60426C1429C0878B0026EC1E /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
+		60426C1429C0878B0026EC1E /* ServiceList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceList.swift; sourceTree = "<group>"; };
 		60426C1829C0C7FD0026EC1E /* TrendingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingController.swift; sourceTree = "<group>"; };
 		60426C1A29C0C80A0026EC1E /* AccountController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountController.swift; sourceTree = "<group>"; };
+		6075ADF529CBB2B00073D981 /* TableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableButton.swift; sourceTree = "<group>"; };
+		6075ADF729CBB9410073D981 /* serviceHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = serviceHeaderView.swift; sourceTree = "<group>"; };
+		6075ADF929CBBC520073D981 /* ServiceButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceButton.swift; sourceTree = "<group>"; };
+		6075ADFB29CBBDCC0073D981 /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		609705F929C747C100E2A5FD /* DataCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DataCell.xib; sourceTree = "<group>"; };
 		609A642829BA641500438F35 /* WebViewerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewerController.swift; sourceTree = "<group>"; };
 		609E9D1229B7B034001D3812 /* ForgotPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordController.swift; sourceTree = "<group>"; };
@@ -47,7 +55,7 @@
 		609E9D1929B7B07F001D3812 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		609E9D1C29B7B236001D3812 /* AuthHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthHeaderView.swift; sourceTree = "<group>"; };
 		609E9D1E29B7DF7C001D3812 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
-		609E9D2029B7E7B4001D3812 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		60A174EF29CB96B700D7E519 /* serviceLogIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = serviceLogIn.swift; sourceTree = "<group>"; };
 		60A23AE529C3C00F004BDD20 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		60A5435729BE6E4A00B5A9CC /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		60A5435929BE7D5C00B5A9CC /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
@@ -93,7 +101,8 @@
 			children = (
 				609E9D1C29B7B236001D3812 /* AuthHeaderView.swift */,
 				609E9D1E29B7DF7C001D3812 /* CustomTextField.swift */,
-				609E9D2029B7E7B4001D3812 /* CustomButton.swift */,
+				6075ADF729CBB9410073D981 /* serviceHeaderView.swift */,
+				6075ADF929CBBC520073D981 /* ServiceButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -105,10 +114,12 @@
 				609E9D1929B7B07F001D3812 /* HomeController.swift */,
 				609E9D1729B7B06D001D3812 /* RegisterController.swift */,
 				609E9D1429B7B047001D3812 /* LoginController.swift */,
-				60426C1429C0878B0026EC1E /* SearchController.swift */,
+				60426C1429C0878B0026EC1E /* ServiceList.swift */,
 				609705F929C747C100E2A5FD /* DataCell.xib */,
 				60426C1829C0C7FD0026EC1E /* TrendingController.swift */,
 				60426C1A29C0C80A0026EC1E /* AccountController.swift */,
+				60A174EF29CB96B700D7E519 /* serviceLogIn.swift */,
+				6075ADFB29CBBDCC0073D981 /* SearchController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -121,6 +132,7 @@
 				60BDCDB529BF70E2004AFB34 /* User.swift */,
 				60A23AE529C3C00F004BDD20 /* Service.swift */,
 				60A6499129C64C3D0021836E /* DataCell.swift */,
+				6075ADF529CBB2B00073D981 /* TableButton.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -297,20 +309,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				609E9D1329B7B034001D3812 /* ForgotPasswordController.swift in Sources */,
+				6075ADFC29CBBDCC0073D981 /* SearchController.swift in Sources */,
 				60A5435829BE6E4A00B5A9CC /* AlertManager.swift in Sources */,
 				609E9D1A29B7B07F001D3812 /* HomeController.swift in Sources */,
+				6075ADFA29CBBC520073D981 /* ServiceButton.swift in Sources */,
 				60A5435A29BE7D5C00B5A9CC /* AuthService.swift in Sources */,
 				60BDCDB629BF70E2004AFB34 /* User.swift in Sources */,
+				60A174F029CB96B700D7E519 /* serviceLogIn.swift in Sources */,
 				60BDCDB229BF2BD2004AFB34 /* LoginUserRequest.swift in Sources */,
-				60426C1529C0878B0026EC1E /* SearchController.swift in Sources */,
-				609E9D2129B7E7B4001D3812 /* CustomButton.swift in Sources */,
+				60426C1529C0878B0026EC1E /* ServiceList.swift in Sources */,
 				609E9D1829B7B06D001D3812 /* RegisterController.swift in Sources */,
 				60426C1929C0C7FD0026EC1E /* TrendingController.swift in Sources */,
 				60426C1B29C0C80A0026EC1E /* AccountController.swift in Sources */,
 				60BDCDB429BF3983004AFB34 /* Validator.swift in Sources */,
+				6075ADF629CBB2B00073D981 /* TableButton.swift in Sources */,
 				60AA3CCA29B5F7DC008F05DE /* AppDelegate.swift in Sources */,
 				609E9D1F29B7DF7C001D3812 /* CustomTextField.swift in Sources */,
 				60A5435D29BE7F8D00B5A9CC /* RegisterUserRequest.swift in Sources */,
+				6075ADF829CBB9410073D981 /* serviceHeaderView.swift in Sources */,
 				60AA3CCC29B5F7DC008F05DE /* SceneDelegate.swift in Sources */,
 				609E9D1529B7B047001D3812 /* LoginController.swift in Sources */,
 				60A6499229C64C3D0021836E /* DataCell.swift in Sources */,

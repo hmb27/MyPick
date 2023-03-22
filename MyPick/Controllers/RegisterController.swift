@@ -16,8 +16,8 @@ class RegisterController: UIViewController {
     private let emailField = CustomTextField(fieldType: .email)
     private let passwordField = CustomTextField(fieldType: .password)
     
-    private let signUpButton = CustomButton(title: "Sign Up", hasBackground: true, fontSize: .big)
-    private let signInButton = CustomButton(title: "Already have an account? Sign in.", fontSize: .med)
+    private let signUpButton = TableButton(title: "Sign Up", hasBackground: true, fontSize: .big)
+    private let signInButton = TableButton(title: "Already have an account? Sign in.", fontSize: .med)
     
     
     private let termsTextView: UITextView = {
