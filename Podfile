@@ -14,5 +14,6 @@ target 'MyPick' do
 	pod 'FirebaseStorage'
 	pod 'FirebaseCore'
 	pod 'FirebaseDatabase'
+	pod 'SideMenu'
 
 end

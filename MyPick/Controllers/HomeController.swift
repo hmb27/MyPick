@@ -6,10 +6,11 @@
 //
 
 import UIKit
+import SideMenu
 
 class HomeController: UIViewController {
     
-    
+    //var menu: SideMenuNavigationController?
     //MARK: - UI Components
     // label
     private let label: UILabel = {
@@ -35,7 +36,7 @@ class HomeController: UIViewController {
         super.viewDidLoad()
         self.setupUI()
         //button to start up
-        
+        //menu = SideMenuNavigationController(rootViewController: UIViewController())
         //Fetching user - displaying user name
         AuthService.shared.fetchUser { [weak self]user, error in
             guard let self = self else { return }
@@ -47,7 +48,6 @@ class HomeController: UIViewController {
                 self.label.text = "Welcome \(user.username)\n lets get started"
             }
         }
-        
         
         //self.view.customTabBarController()
         // Do any additional setup after loading the view.
@@ -61,6 +61,7 @@ class HomeController: UIViewController {
         self.view.backgroundColor = .systemPurple
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(didTapLogOut))
         self.button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
+        //self.button.addTarget(self, action: #selector(didTapMenu), for: .touchUpInside)
         self.view.addSubview(label)
         self.view.addSubview(button)
         self.label.translatesAutoresizingMaskIntoConstraints = false
@@ -150,5 +151,9 @@ class ThirdViewController: UIViewController {
             }
         }
     }
-}
+    
+    //@objc private func didTapMenu() {
+       // present(menu!, animated: true)
+    }
+
 
