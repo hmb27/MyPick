@@ -11,7 +11,7 @@ import FirebaseFirestore
 import FirebaseDatabase
 
 class AccountController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+    
     
     
     var tableView: UITableView!
@@ -39,37 +39,50 @@ class AccountController: UIViewController, UITableViewDelegate, UITableViewDataS
         switch indexPath.row {
         case 0:
             cell.textLabel?.text = "User Details"
-            let usersDetailsVC = UserDetailsViewController()
-            navigationController?.pushViewController(usersDetailsVC, animated: true)
         case 1:
             cell.textLabel?.text = "Connect Your Apps"
-            let serviceList = SearchController()
-            navigationController?.pushViewController(serviceList, animated: true)
         case 2:
             cell.textLabel?.text = "Payment List"
-            let paymentList =  PaymentList()
-            navigationController?.pushViewController(paymentList, animated: true)
         case 3:
             cell.textLabel?.text = "Recently Watched"
-            let recentlyWatched = RecentlyWatched()
-            navigationController?.pushViewController(recentlyWatched, animated: true)
         case 4:
-            cell.textLabel?.text = "Log Out" // add log out code 
+            cell.textLabel?.text = "Log Out" // add log out code
         default:
             break
         }
         return cell
     }
     
-    func tableView(_tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detailVC = UserDetailsViewController()
-        navigationController?.pushViewController(detailVC, animated: true)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let backButton = UIBarButtonItem(title: "Return", style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = backButton
+        switch indexPath.row {
+        case 0:
+            let usersDetailsVC = UserDetailsViewController()
+            navigationController?.pushViewController(usersDetailsVC, animated: true)
+        case 1:
+            let serviceList = ServiceList()
+            navigationController?.pushViewController(serviceList, animated: true)
+        case 2:
+            let paymentList =  PaymentList()
+            navigationController?.pushViewController(paymentList, animated: true)
+        case 3:
+            let recentlyWatched = RecentlyWatched()
+            navigationController?.pushViewController(recentlyWatched, animated: true)
+        case 4:
+            // add log out code
+            break
+        default:
+            break
+        }
+        
+        
+        // LIST VIEW
+        
+        //USER DETAILS
+        //CONNECT YOUR APPS
+        //PAYMENT LIST
+        //RECENTLY WATCHED
+        //LOG OUT
     }
-    // LIST VIEW
-    
-    //USER DETAILS
-    //CONNECT YOUR APPS
-    //PAYMENT LIST
-    //RECENTLY WATCHED
-    //LOG OUT
 }

@@ -110,7 +110,7 @@ class FirstViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let vc = TrendingController()
-        self.navigationController?.pushViewController(vc, animated: false)
+        self.navigationController?.pushViewController(vc, animated: true)
         //view.backgroundColor = .green
         title = "Trending"
     }
@@ -120,7 +120,7 @@ class SecondViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let vc = SearchController()
-        self.navigationController?.pushViewController(vc, animated: false)
+        self.navigationController?.pushViewController(vc, animated: true)
         //view.backgroundColor = .blue
         title = "Search"
         }
@@ -130,7 +130,7 @@ class ThirdViewController: UIViewController {
         override func viewDidLoad() {
         super.viewDidLoad()
         let vc = AccountController()
-        self.navigationController?.pushViewController(vc, animated: false)
+        self.navigationController?.pushViewController(vc, animated: true)
         //view.backgroundColor = .systemPink
         title = "Account"
         }
