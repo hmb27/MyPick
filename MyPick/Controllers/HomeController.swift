@@ -31,13 +31,12 @@ class HomeController: UIViewController {
         return button
     } ()
     
+    private var tabBarVC: UITabBarController?
+    
     //USER LOG IN - HOME DISPLAY PAGE - Fetching user - displaying user name
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupUI()
-        //button to start up
-        //menu = SideMenuNavigationController(rootViewController: UIViewController())
-        //Fetching user - displaying user name
         AuthService.shared.fetchUser { [weak self]user, error in
             guard let self = self else { return }
             if let error = error {
@@ -49,11 +48,7 @@ class HomeController: UIViewController {
             }
         }
         
-        //self.view.customTabBarController()
-        // Do any additional setup after loading the view.
-        
     }
-    
     
     
     //SET UP UI FUNC
@@ -78,7 +73,16 @@ class HomeController: UIViewController {
     
     //
     @objc func didTapButton() {
+        
+        if let tabBarVC = self.tabBarVC {
+            self.present(tabBarVC, animated: true)
+            return
+        }
+        
+        //create another version of tabbar
         let tabBarVC  = UITabBarController()
+        self.tabBarVC = tabBarVC
+        
         let vc1 = UINavigationController(rootViewController: FirstViewController())
         let vc2 = UINavigationController(rootViewController: SecondViewController())
         let vc3 = UINavigationController(rootViewController: ThirdViewController())
@@ -94,49 +98,46 @@ class HomeController: UIViewController {
             return
         }
         
+        //image display
         let images = ["play.circle.fill", "magnifyingglass", "gear"]
-        
         for x in 0..<items.count {
             items[x].image = UIImage(systemName: images[x])
         }
         
         tabBarVC.modalPresentationStyle = .fullScreen
-        present(tabBarVC, animated: true)
+        self.present(tabBarVC, animated: true)
+        self.tabBarVC = nil
         
     }
-
+    
     //tab 1 - trending
-class FirstViewController: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        let vc = TrendingController()
-        self.navigationController?.pushViewController(vc, animated: true)
-        //view.backgroundColor = .green
-        title = "Trending"
+    class FirstViewController: UIViewController {
+        override func viewDidLoad() {
+            super.viewDidLoad()
+            let vc = TrendingController()
+            self.navigationController?.pushViewController(vc, animated: true)
+            title = "Trending"
+        }
     }
-}
     //tab 2 - search
-class SecondViewController: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        let vc = SearchController()
-        self.navigationController?.pushViewController(vc, animated: true)
-        //view.backgroundColor = .blue
-        title = "Search"
+    class SecondViewController: UIViewController {
+        override func viewDidLoad() {
+            super.viewDidLoad()
+            let vc = SearchController()
+            self.navigationController?.pushViewController(vc, animated: false)
+            title = "Search"
         }
     }
     //tab 3  - account
-class ThirdViewController: UIViewController {
+    class ThirdViewController: UIViewController {
         override func viewDidLoad() {
-        super.viewDidLoad()
-        let vc = AccountController()
-        self.navigationController?.pushViewController(vc, animated: true)
-        //view.backgroundColor = .systemPink
-        title = "Account"
+            super.viewDidLoad()
+            let vc = AccountController()
+            self.navigationController?.pushViewController(vc, animated: false)
+            title = "Account"
         }
     }
-
-
+    //}
     //LOG OUT FUNCTION
     @objc private func didTapLogOut() {
         AuthService.shared.signOut { [weak self] error in
@@ -151,9 +152,7 @@ class ThirdViewController: UIViewController {
             }
         }
     }
-    
-    //@objc private func didTapMenu() {
-       // present(menu!, animated: true)
-    }
+}
+
 
 

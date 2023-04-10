@@ -40,7 +40,7 @@ class AccountController: UIViewController, UITableViewDelegate, UITableViewDataS
         case 0:
             cell.textLabel?.text = "User Details"
         case 1:
-            cell.textLabel?.text = "Connect Your Apps"
+            cell.textLabel?.text = "Connect"
         case 2:
             cell.textLabel?.text = "Payment List"
         case 3:

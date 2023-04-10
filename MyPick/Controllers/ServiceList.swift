@@ -9,18 +9,18 @@ import UIKit
 import FirebaseStorage
 import FirebaseFirestore
 import FirebaseDatabase
+import FirebaseAuth
 
 
 class ServiceList: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    private let headerView = AuthHeaderView(title: "", subTitle: "Sign into your account now")
-    
-    
+    //let headerView = AuthHeaderView(title: "", subTitle: "Sign into your account now")
     let tableView = UITableView()
     let reuseIdentifier = "DataCell"
     var serviceArray: [Service] = []
     var db: Firestore!
-    let connectButton = TableButton(title: "Connect", fontSize: .med)
+    var db2: CollectionReference!
+    var currentUser: User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,10 +32,20 @@ class ServiceList: UIViewController, UITableViewDataSource, UITableViewDelegate 
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(DataCell.self, forCellReuseIdentifier: reuseIdentifier)
         view.addSubview(tableView)
-        view.addSubview(connectButton)
-        self.connectButton.addTarget(self, action: #selector(didTapConnect), for: .touchUpInside)
+        self.setUpNavigationBar()
+
+        //fetching & checking current user logged in to add services to their fb
+        AuthService.shared.fetchUser { user, error in
+            if let error = error {
+                print("Error fetching user: /(error.localizedDescription)")
+            } else if let user = user {
+                self.currentUser = user
+                self.db2 = self.db.collection("users").document(user.userUID ?? "").collection("userServices")
+            }
+        }
+    
         
-        
+        //retrieve the data from firebase
         db.collection("services").getDocuments() { (querySnapshot, error ) in
             if let error = error {
                 print("Error getting documents: \(error)")
@@ -53,6 +63,10 @@ class ServiceList: UIViewController, UITableViewDataSource, UITableViewDelegate 
                 self.tableView.reloadData()
             }
         }
+        
+        //let returnButton = UIBarButtonItem(title: "Return", style: .plain, target: self, action: #selector(didTapReturn))
+       // navigationItem.leftBarButtonItem = returnButton
+        
     }
     
     
@@ -64,32 +78,29 @@ class ServiceList: UIViewController, UITableViewDataSource, UITableViewDelegate 
     
     //UI SET UP
     private func setupUI() {
-        self.view.addSubview(headerView)
         self.view.addSubview(tableView)
-        self.view.addSubview(connectButton)
         
-        headerView.translatesAutoresizingMaskIntoConstraints = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        connectButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            
-            self.headerView.topAnchor.constraint(equalTo: self.view.layoutMarginsGuide.topAnchor),
-            self.headerView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            self.headerView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            self.headerView.heightAnchor.constraint(equalToConstant: 222),
-            
-            tableView.topAnchor.constraint(equalTo: self.view.topAnchor),
+
+            tableView.topAnchor.constraint(equalTo: self.view.layoutMarginsGuide.topAnchor),
             tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            
-            connectButton.topAnchor.constraint(equalTo: self.view.topAnchor),
-            connectButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-            connectButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            connectButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
         ])
         
+    }
+    
+    private func setUpNavigationBar() {
+        let navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 44))
+        navBar.barTintColor = .white
+        navBar.tintColor = .black
+        let returnButton = UIBarButtonItem(title: "Return", style: .plain, target: self, action: #selector(didTapReturn))
+        let navItem = UINavigationItem(title: "")
+        navItem.leftBarButtonItem = returnButton
+        navBar.setItems([navItem], animated: false)
+        view.addSubview(navBar)
     }
     
     
@@ -117,22 +128,60 @@ class ServiceList: UIViewController, UITableViewDataSource, UITableViewDelegate 
                 }
             }
         }
+        
+        
+        
+        //removing current incorrect connect button - UIBUG 
+        for subview in cell.contentView.subviews {
+            if let button = subview as? UIButton {
+                button.removeFromSuperview()
+            }
+        }
+        
+        //adding the connect button to each cell
+        let connectButton = UIButton(type: .system)
+        connectButton.setTitle("Connect", for: .normal)
+        connectButton.addTarget(self, action: #selector(didTapConnect), for: .touchUpInside)
+        connectButton.translatesAutoresizingMaskIntoConstraints = false
+        cell.contentView.addSubview(connectButton)
+        NSLayoutConstraint.activate([
+            connectButton.centerYAnchor.constraint(equalTo: cell.contentView.centerYAnchor),
+            connectButton.trailingAnchor.constraint(equalTo: cell.trailingAnchor, constant: -20)
+        ])
+        
         return cell
     }
     
-    /*func tableView(_tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let service = serviceArray[indexPath.row]
-        let alertController = UIAlertController(title: "Connect",message:nil, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        alertController.addAction(UIAlertAction(title: "Connect", style: .default, handler: { _ in
-        }))
-        present(alertController, animated: true, completion: nil)
-    }*/
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedService = serviceArray[indexPath.row]
+        guard let currentUser = currentUser else {
+            print("No user logged in.")
+            return
+        }
+        
+        db2.document(currentUser.userUID ?? "").setData([
+                selectedService.name: selectedService.url
+            ], merge: true) { error in
+                if let error = error {
+                    print("Error adding service to user: /(error.localizedDescription)")
+                } else {
+                    print("Service added to user")
+                }
+            }
+    }
     
+    // func to add service to userServices when CONNECT is tapped
     @objc private func didTapConnect() {
-    //print("connect button tapped")
-    let vc = serviceLogIn()
-    self.navigationController?.pushViewController(vc, animated: true)
+        if let indexPath = tableView.indexPathForSelectedRow {
+            let selectedService = serviceArray[indexPath.row]
+            db2.addDocument(data: ["name": selectedService.name, "url": selectedService.url])
+            let vc = serviceLogIn()
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    @objc private func didTapReturn(){
+        navigationController?.popViewController(animated: true)
     }
     
 }

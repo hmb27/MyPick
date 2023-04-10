@@ -117,11 +117,10 @@
 			isa = PBXGroup;
 			children = (
 				609E9D1229B7B034001D3812 /* ForgotPasswordController.swift */,
-				609E9D1929B7B07F001D3812 /* HomeController.swift */,
 				609E9D1729B7B06D001D3812 /* RegisterController.swift */,
+				609E9D1929B7B07F001D3812 /* HomeController.swift */,
 				609E9D1429B7B047001D3812 /* LoginController.swift */,
 				60426C1429C0878B0026EC1E /* ServiceList.swift */,
-				609705F929C747C100E2A5FD /* DataCell.xib */,
 				60426C1829C0C7FD0026EC1E /* TrendingController.swift */,
 				60426C1A29C0C80A0026EC1E /* AccountController.swift */,
 				60A174EF29CB96B700D7E519 /* serviceLogIn.swift */,
@@ -141,6 +140,7 @@
 				60BDCDB529BF70E2004AFB34 /* User.swift */,
 				60A23AE529C3C00F004BDD20 /* Service.swift */,
 				60A6499129C64C3D0021836E /* DataCell.swift */,
+				609705F929C747C100E2A5FD /* DataCell.xib */,
 				6075ADF529CBB2B00073D981 /* TableButton.swift */,
 			);
 			path = Models;
