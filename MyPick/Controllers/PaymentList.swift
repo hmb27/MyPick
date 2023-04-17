@@ -143,9 +143,14 @@ class PaymentList:  UIViewController, UITableViewDataSource, UITableViewDelegate
         }
     
         
-        @objc private func didTapConnect(_ sender: UIButton) {
+    @objc private func didTapConnect(_ sender: UIButton) {
+        if let indexPath = tableView.indexPathForSelectedRow {
+            let selectedService = serviceArray[indexPath.row]
+            let vc = DateClickerController()
+            self.navigationController?.pushViewController(vc, animated: true)
             // FIX THIS FUNC TO ADD PAYMENT LIST TO USER
         }
+    }
            
             @objc private func didTapReturn(){
                 navigationController?.popViewController(animated: true)

@@ -37,6 +37,7 @@
 		60BDCDB229BF2BD2004AFB34 /* LoginUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BDCDB129BF2BD2004AFB34 /* LoginUserRequest.swift */; };
 		60BDCDB429BF3983004AFB34 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BDCDB329BF3983004AFB34 /* Validator.swift */; };
 		60BDCDB629BF70E2004AFB34 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BDCDB529BF70E2004AFB34 /* User.swift */; };
+		60C5CCE329EDE8DE003219AA /* DateClickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C5CCE229EDE8DE003219AA /* DateClickerController.swift */; };
 		60D99CE529CE561300DAB066 /* PaymentList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D99CE429CE561300DAB066 /* PaymentList.swift */; };
 		60ECD8F129C76F7E0028B8AB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 60ECD8F029C76F7E0028B8AB /* GoogleService-Info.plist */; };
 		942055F0DAEFB8C77C54DEE3 /* Pods_MyPick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69C585ADED4374E65E5177B4 /* Pods_MyPick.framework */; };
@@ -75,6 +76,7 @@
 		60BDCDB129BF2BD2004AFB34 /* LoginUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUserRequest.swift; sourceTree = "<group>"; };
 		60BDCDB329BF3983004AFB34 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		60BDCDB529BF70E2004AFB34 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		60C5CCE229EDE8DE003219AA /* DateClickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateClickerController.swift; sourceTree = "<group>"; };
 		60D99CE429CE561300DAB066 /* PaymentList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentList.swift; sourceTree = "<group>"; };
 		60ECD8F029C76F7E0028B8AB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		69C585ADED4374E65E5177B4 /* Pods_MyPick.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyPick.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -128,6 +130,7 @@
 				60A2B02829CE52E2009BCC01 /* UserDetailsViewController.swift */,
 				60D99CE429CE561300DAB066 /* PaymentList.swift */,
 				6070A8B129CE569100884D8B /* RecentlyWatched.swift */,
+				60C5CCE229EDE8DE003219AA /* DateClickerController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 			files = (
 				609E9D1329B7B034001D3812 /* ForgotPasswordController.swift in Sources */,
 				6075ADFC29CBBDCC0073D981 /* SearchController.swift in Sources */,
+				60C5CCE329EDE8DE003219AA /* DateClickerController.swift in Sources */,
 				60A5435829BE6E4A00B5A9CC /* AlertManager.swift in Sources */,
 				609E9D1A29B7B07F001D3812 /* HomeController.swift in Sources */,
 				6075ADFA29CBBC520073D981 /* ServiceButton.swift in Sources */,
