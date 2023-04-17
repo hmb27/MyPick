@@ -6,31 +6,64 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseDatabase
+import FirebaseStorage
+import FirebaseFirestore
 
-class UserDetailsViewController: AccountController {
-
+class UserDetailsViewController: UIViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemMint
-        // RAPID/TMBD API FOR CAROSEL VIEW
         let labelRect = CGRect(x: 50, y: 100, width: 200, height: 100)
         let label = UILabel(frame: labelRect)
         label.text  = "INSIDE USERDETAILS"
         label.numberOfLines = 2
         view.addSubview(label)
-
-        // Do any additional setup after loading the view.
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
+       
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /*super.viewDidLoad()
+        AuthService.shared.fetchUser { [weak self]user, error in
+                guard let self = self else { return }
+                if let error = error {
+                    AlertManager.showFetchingUserError(on: self, with: error)
+                    return
+                }
+                if let user = user {
+                    let labelRect = CGRect(x: 50, y: 100, width: 200, height: 100)
+                    let label = UILabel(frame: labelRect)
+                    self.label.text = "Username: \(user.username)"
+                }
+            }
+            
+        }
+    
+    
+    private func setupUI() {
+        self.view.backgroundColor = .systemPurple
+        self.label.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        NSLayoutConstraint.activate([
+            label.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            label.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+        ])
+    }
+
+    }
+
+*/
+

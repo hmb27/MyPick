@@ -88,7 +88,7 @@ class HomeController: UIViewController {
         let vc3 = UINavigationController(rootViewController: ThirdViewController())
         
         vc1.title = "Trending"
-        vc2.title = "Search"
+        vc2.title = "Search Your Apps"
         vc3.title = "Account"
         
         tabBarVC.tabBar.backgroundColor = .systemGray2
@@ -125,7 +125,7 @@ class HomeController: UIViewController {
             super.viewDidLoad()
             let vc = SearchController()
             self.navigationController?.pushViewController(vc, animated: false)
-            title = "Search"
+            title = "Search Your Apps"
         }
     }
     //tab 3  - account

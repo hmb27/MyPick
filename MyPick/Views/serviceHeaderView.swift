@@ -15,7 +15,7 @@ class serviceHeaderView: UIView {
     private let logoImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
-        iv.image = UIImage(named: "Netflix" )
+        iv.image = UIImage(named: "profile" )
         iv.tintColor = .white
         return iv
     }()
