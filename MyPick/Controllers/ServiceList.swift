@@ -64,11 +64,6 @@ class ServiceList: UIViewController, UITableViewDataSource, UITableViewDelegate 
     }
         
         
-        override func viewWillAppear(_ animated: Bool) {
-            super.viewWillAppear(animated)
-            self.navigationController?.navigationBar.isHidden = true
-        }
-        
         //UI SET UP
         private func setupUI() {
             self.view.addSubview(tableView)

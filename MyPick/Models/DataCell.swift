@@ -14,7 +14,6 @@ class DataCell : UITableViewCell {
     
     static let identifier = "DataCell"
     
-    
     let dataImageView:  UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
@@ -48,19 +47,14 @@ class DataCell : UITableViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
-    
     //UI SET UP
     private func setupUI(){
         self.contentView.addSubview(dataImageView)
         self.contentView.addSubview(dataTitleText)
         self.contentView.addSubview(connectButton)
-        
         dataImageView.translatesAutoresizingMaskIntoConstraints = false
         dataTitleText.translatesAutoresizingMaskIntoConstraints = false
         connectButton.translatesAutoresizingMaskIntoConstraints = false
-        
         NSLayoutConstraint.activate([
             dataImageView.topAnchor.constraint(equalTo: self.contentView.layoutMarginsGuide.topAnchor),
             dataImageView.bottomAnchor.constraint(equalTo: self.contentView.layoutMarginsGuide.bottomAnchor),
