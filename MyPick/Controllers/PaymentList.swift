@@ -21,6 +21,7 @@ class PaymentList:  UIViewController, UITableViewDataSource, UITableViewDelegate
     var db2: CollectionReference!
     var currentUser: User?
     let datePicker = UIDatePicker()
+    var selectedService: Service?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +34,24 @@ class PaymentList:  UIViewController, UITableViewDataSource, UITableViewDelegate
         tableView.register(DataCell.self, forCellReuseIdentifier: reuseIdentifier)
         view.addSubview(tableView)
         
+        let titleLabel = UILabel()
+        titleLabel.text = "Add your next subscription renewal date for your selected apps"
+        titleLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        titleLabel.textAlignment = .center
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(titleLabel)
         
+        NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+                     titleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
+                     titleLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10),
+                     tableView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
+                     tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0),
+                     tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0),
+                     tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0)
+            
+            ])
+            
         //reference to current user logged in
         AuthService.shared.fetchUser { user, error in
             if let error = error {
@@ -61,14 +79,10 @@ class PaymentList:  UIViewController, UITableViewDataSource, UITableViewDelegate
         }
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        //tableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 4).isActive = true
         tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
     }
-    
-    
-    
     //UI SET UP
     private func setupUI() {
         self.view.addSubview(tableView)
@@ -119,20 +133,17 @@ class PaymentList:  UIViewController, UITableViewDataSource, UITableViewDelegate
         return cell
     }
     
-    @objc func datePickerValueChanged(_ sender: UIDatePicker) {
-        print(sender.date)
-    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedService = serviceArray[indexPath.row]
+        self.selectedService = serviceArray[indexPath.row]
         guard let currentUser = currentUser else {
             print("No user logged in.")
             return
         }
     }
     
-    
-    @objc private func didTapConnect(_ sender: UIButton) {
+    @objc private func datePickerValueChanged(_ sender: UIDatePicker) {
+        print(sender.date)
     }
     
 }

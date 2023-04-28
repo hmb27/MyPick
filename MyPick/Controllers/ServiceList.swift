@@ -32,7 +32,6 @@ class ServiceList: UIViewController, UITableViewDataSource, UITableViewDelegate 
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(DataCell.self, forCellReuseIdentifier: reuseIdentifier)
         view.addSubview(tableView)
-        self.setUpNavigationBar()
         
         //fetching & checking current user logged in to add services to their fb
         AuthService.shared.fetchUser { user, error in
@@ -75,17 +74,6 @@ class ServiceList: UIViewController, UITableViewDataSource, UITableViewDelegate 
                 tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             ])
             
-        }
-        
-        private func setUpNavigationBar() {
-            let navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 44))
-            navBar.barTintColor = .white
-            navBar.tintColor = .black
-            let returnButton = UIBarButtonItem(title: "Return", style: .plain, target: self, action: #selector(didTapReturn))
-            let navItem = UINavigationItem(title: "")
-            navItem.leftBarButtonItem = returnButton
-            navBar.setItems([navItem], animated: false)
-            view.addSubview(navBar)
         }
         
         // TABLE VIEW FUNCS
@@ -230,11 +218,6 @@ class ServiceList: UIViewController, UITableViewDataSource, UITableViewDelegate 
             }
         }
     }
-
-    
-        @objc private func didTapReturn(){
-            navigationController?.popViewController(animated: true)
-        }
         
     }
     

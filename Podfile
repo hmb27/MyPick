@@ -15,5 +15,7 @@ target 'MyPick' do
 	pod 'FirebaseCore'
 	pod 'FirebaseDatabase'
 	pod 'SideMenu'
+	pod 'JSON'
+	pod 'Kingfisher'
 
 end
