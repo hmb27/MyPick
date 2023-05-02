@@ -13,7 +13,7 @@ import FirebaseAuth
 
 class PaymentList:  UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    //let headerView = AuthHeaderView(title: "", subTitle: "Sign into your account now")
+    let headerView = UIView()
     let tableView = UITableView()
     let reuseIdentifier = "DataCell"
     var serviceArray: [Service] = []
@@ -22,36 +22,54 @@ class PaymentList:  UIViewController, UITableViewDataSource, UITableViewDelegate
     var currentUser: User?
     let datePicker = UIDatePicker()
     var selectedService: Service?
+    let titleLabel = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupUI()
         db = Firestore.firestore()
+        self.navigationController?.navigationBar.barTintColor = UIColor.white
         tableView.frame = view.frame
         tableView.dataSource = self
         tableView.allowsSelection = true
-        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(DataCell.self, forCellReuseIdentifier: reuseIdentifier)
         view.addSubview(tableView)
+    
+        //header view
+        headerView.backgroundColor = .white
+        view.addSubview(headerView)
         
-        let titleLabel = UILabel()
+        //UILabel
         titleLabel.text = "Add your next subscription renewal date for your selected apps"
-        titleLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        titleLabel.font = UIFont(name: "Helvetica", size: 20) // FIX TITLE TO LOOK NICER 
+        titleLabel.adjustsFontSizeToFitWidth = true
         titleLabel.textAlignment = .center
+        headerView.addSubview(titleLabel)
+        
+        //set up date picker
+        datePicker.datePickerMode = .date
+        
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(titleLabel)
+        headerView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-                     titleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
-                     titleLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10),
-                     tableView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
-                     tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0),
-                     tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0),
-                     tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0)
-            
-            ])
-            
+            headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            headerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            headerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            headerView.heightAnchor.constraint(equalToConstant: 100),
+                        
+            titleLabel.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 10),
+            titleLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 10),
+            titleLabel.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -10),
+                        
+            tableView.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 10),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)])
+        
+        //set background color to white
+        view.backgroundColor = .white
+        headerView.backgroundColor = .white 
         //reference to current user logged in
         AuthService.shared.fetchUser { user, error in
             if let error = error {
@@ -72,28 +90,12 @@ class PaymentList:  UIViewController, UITableViewDataSource, UITableViewDelegate
                             }
                         }
                         self.tableView.reloadData()
-                    }
-                }
-                
-            }
-        }
+                    }}}}
         
-        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
-    }
-    //UI SET UP
-    private func setupUI() {
-        self.view.addSubview(tableView)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: self.view.layoutMarginsGuide.topAnchor),
-            tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-            tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-        ])
-    }
+        tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true }
+    
     // TABLE VIEW FUNCS
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return serviceArray.count
@@ -103,8 +105,8 @@ class PaymentList:  UIViewController, UITableViewDataSource, UITableViewDelegate
             return UITableViewCell()
         }
         let service = serviceArray[indexPath.row]
-        cell.dataTitleText.text = service.name
         
+        //set only image - no name
         let storageRef = Storage.storage().reference(forURL: service.url)
         storageRef.getData(maxSize: 28060876) { (data, error) in
             if let err = error {
@@ -112,41 +114,70 @@ class PaymentList:  UIViewController, UITableViewDataSource, UITableViewDelegate
             } else {
                 if let image = data {
                     let myImage = UIImage(data: image)
-                    cell.dataImageView.image = myImage
-                }
-            }
-        }
+                    cell.dataImageView.image = myImage }}}
+        
+        
         
         //add date clicker to cell
         let datePicker = UIDatePicker()
         datePicker.datePickerMode = .date
-        datePicker.addTarget(self, action: #selector(datePickerValueChanged(_:)), for: .valueChanged)
+        //datePicker.addTarget(self, action: #selector(datePickerValueChanged(_:)), for: .valueChanged)
         cell.accessoryView = datePicker
+        
         
         //remove "connect" button - UIBUG
         for subview in cell.contentView.subviews {
             if let button = subview as? UIButton {
-                button.removeFromSuperview()
-            }
-        }
-        
-        return cell
-    }
-    
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.selectedService = serviceArray[indexPath.row]
-        guard let currentUser = currentUser else {
-            print("No user logged in.")
-            return
-        }
-    }
-    
-    @objc private func datePickerValueChanged(_ sender: UIDatePicker) {
-        print(sender.date)
-    }
-    
+                button.removeFromSuperview() }}
+        return cell }
 }
 
 
+/*@objc private func datePickerValueChanged(_ sender: UIDatePicker) {
+        guard let selectedIndexPath = tableView.indexPathForSelectedRow else {
+            print("Error: selectedIndexPath is nil")
+            return
+        }
 
+        let selectedService = serviceArray[selectedIndexPath.row]
+        let userServicesDocRef = db.collection("users").document(currentUser.userUID ?? "").collection("userServices").document(selectedService.name)
+        let subscriptionRenewalDateCollectionRef = userServicesDocRef.collection("subscriptionRenewalDate")
+        subscriptionRenewalDateCollectionRef.addDocument(data: ["renewalDate": selectedDate])
+
+        
+        // Check if the subscriptionRenewalDate subcollection already exists
+        userServicesDocRef.collection("subscriptionRenewalDate").getDocuments { (querySnapshot, error) in
+            if let error = error {
+                print("Error getting documents: \(error)")
+            } else {
+                if querySnapshot?.isEmpty ?? true {
+                    // subscriptionRenewalDate subcollection does not exist, create it
+                    userServicesDocRef.setData(["subscriptionRenewalDate": true], merge: true) { error in
+                        if let error = error {
+                            print("Error adding document: \(error)")
+                        } else {
+                            // Add selected date as a new document in the subscriptionRenewalDate subcollection
+                            subscriptionRenewalDateCollectionRef.setData(["date": selectedDate]) { error in
+                                if let error = error {
+                                    print("Error adding document: \(error)")
+                                } else {
+                                    print("Document added with ID: \(subscriptionRenewalDateCollectionRef.documentID)")
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    // subscriptionRenewalDate subcollection already exists, add selected date as a new document
+                    subscriptionRenewalDateCollectionRef.setData(["date": selectedDate]) { error in
+                        if let error = error {
+                            print("Error adding document: \(error)")
+                        } else {
+                            print("Document added with ID: \(subscriptionRenewalDateCollectionRef.documentID)")
+                        }
+                    }
+                }
+            }
+        }
+        
+    }
+}*/

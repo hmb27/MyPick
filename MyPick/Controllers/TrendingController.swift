@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import Alamofire
 import Kingfisher
+import SideMenu
 
 class TrendingController: UIViewController {
     
@@ -64,61 +65,78 @@ class TrendingController: UIViewController {
     }()
     
     private let movieService = MovieService()
+    private var menu: SideMenuNavigationController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         title = "Trending"
         
+        //Display sideMenu
+        let menuButton = UIBarButtonItem(image: UIImage(systemName: "list.dash"), style: .plain, target: self, action: #selector(didTapMenuButton))
+        navigationItem.leftBarButtonItem = menuButton
+        
+        //set up sideMenu
+        let menuVC = SideMenuController()
+        menu = SideMenuNavigationController(rootViewController: menuVC)
+        menu?.leftSide = true
+        menu?.setNavigationBarHidden(true, animated: false)
+        SideMenuManager.default.leftMenuNavigationController = menu
+        
+        //present sidemenu
+        present(menu!, animated: true, completion: nil)
+        //add to scrollView
         view.addSubview(scrollView)
         scrollView.addSubview(popularLabel)
         scrollView.addSubview(popularStackView)
         scrollView.addSubview(upcomingLabel)
         scrollView.addSubview(upcomingStackView)
-        scrollView.addSubview(nowPlayingStackView)
         scrollView.addSubview(nowPlayingLabel)
+        scrollView.addSubview(nowPlayingStackView)
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         popularStackView.translatesAutoresizingMaskIntoConstraints = false
         upcomingStackView.translatesAutoresizingMaskIntoConstraints = false
         nowPlayingStackView.translatesAutoresizingMaskIntoConstraints = false
-
+        
         popularLabel.translatesAutoresizingMaskIntoConstraints = false
         upcomingLabel.translatesAutoresizingMaskIntoConstraints = false
         nowPlayingLabel.translatesAutoresizingMaskIntoConstraints = false
-        
+        //Display Constraints
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-                 
+                  
             popularLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 10),
             popularLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 10),
-                 
+                  
             popularStackView.topAnchor.constraint(equalTo: popularLabel.bottomAnchor, constant: 10),
             popularStackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 10),
             popularStackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             popularStackView.heightAnchor.constraint(equalToConstant: 250),
-            
-            upcomingLabel.topAnchor.constraint(equalTo: popularStackView.topAnchor, constant: 10),
+                  
+            upcomingLabel.topAnchor.constraint(equalTo: popularStackView.bottomAnchor, constant: 20),
             upcomingLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 10),
-                 
+                  
             upcomingStackView.topAnchor.constraint(equalTo: upcomingLabel.bottomAnchor, constant: 10),
             upcomingStackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 10),
             upcomingStackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             upcomingStackView.heightAnchor.constraint(equalToConstant: 250),
-                 
+                  
             nowPlayingLabel.topAnchor.constraint(equalTo: upcomingStackView.bottomAnchor, constant: 20),
             nowPlayingLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 10),
-                 
+                  
             nowPlayingStackView.topAnchor.constraint(equalTo: nowPlayingLabel.bottomAnchor, constant: 10),
             nowPlayingStackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 10),
             nowPlayingStackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             nowPlayingStackView.heightAnchor.constraint(equalToConstant: 250),
+                  
+            upcomingStackView.bottomAnchor.constraint(equalTo: nowPlayingLabel.topAnchor, constant: -20),
+            popularStackView.bottomAnchor.constraint(equalTo: upcomingLabel.topAnchor, constant: -20),
             nowPlayingStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20)
         ])
-        
         
         movieService.fetchMovies(for: .popular) { [weak self] result in
             switch result {
@@ -126,6 +144,9 @@ class TrendingController: UIViewController {
                 DispatchQueue.main.async {
                     for movie in movies {
                         let movieView = MovieView()
+                        movieView.isUserInteractionEnabled = true
+                        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self?.didTapMovieView(_:)))
+                        movieView.addGestureRecognizer(tapGesture)
                         movieView.configure(with: movie)
                         self?.popularStackView.addArrangedSubview(movieView)
                     }
@@ -136,22 +157,24 @@ class TrendingController: UIViewController {
             }
         }
         
-        movieService.fetchMovies(for: .upcoming) {[weak self] result in
+        movieService.fetchMovies(for: .upcoming) { [weak self] result in
             switch result {
             case .success(let movies):
                 DispatchQueue.main.async {
-                    for movie in movies{
+                    for movie in movies {
                         let movieView = MovieView()
+                        movieView.isUserInteractionEnabled = true
+                        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self?.didTapMovieView(_:)))
+                        movieView.addGestureRecognizer(tapGesture)
                         movieView.configure(with: movie)
                         self?.upcomingStackView.addArrangedSubview(movieView)
                     }
                 }
                 
             case .failure(let error):
-                print("Error fetching upcoming movies", error)
+                print("Error fetching popular movies:", error)
             }
         }
-        
         
         movieService.fetchMovies(for: .nowPlaying) { [weak self] result in
             switch result {
@@ -159,14 +182,30 @@ class TrendingController: UIViewController {
                 DispatchQueue.main.async {
                     for movie in movies {
                         let movieView = MovieView()
+                        movieView.isUserInteractionEnabled = true
+                        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self?.didTapMovieView(_:)))
+                        movieView.addGestureRecognizer(tapGesture)
                         movieView.configure(with: movie)
                         self?.nowPlayingStackView.addArrangedSubview(movieView)
                     }
                 }
                 
             case .failure(let error):
-                print("Error fetching nowPlaying movies:", error)
+                print("Error fetching popular movies:", error)
             }
         }
     }
+    
+    @objc private func didTapMenuButton() {
+        present(menu!, animated: true)
+       
+    }
+    
+   @objc private func didTapMovieView(_ sender: UITapGestureRecognizer) {
+        guard let movieView = sender.view as? MovieView else { return }
+        let movieDetailsVC = MovieDetails()
+        movieDetailsVC.movie = movieView.movie
+        navigationController?.pushViewController(movieDetailsVC, animated: true)
+    }
 }
+

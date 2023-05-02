@@ -6,18 +6,43 @@
 //
 
 import UIKit
+import SideMenu
 
 class RecentlyWatched:  UIViewController {
     
+    private var menu: SideMenuNavigationController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemMint
-        // RAPID/TMBD API FOR CAROSEL VIEW
-        let labelRect = CGRect(x: 50, y: 100, width: 200, height: 100)
-        let label = UILabel(frame: labelRect)
-        label.text  = "INSIDE RECENTLY WATCHED"
-        label.numberOfLines = 2
-        view.addSubview(label)
+        view.backgroundColor = .white
+        title = "Recently Watched"
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
+        //Display sideMenu
+        let menuButton = UIBarButtonItem(image: UIImage(systemName: "list.dash"), style: .plain, target: self, action: #selector(didTapMenuButton))
+        navigationItem.leftBarButtonItem = menuButton
+        
+        //set up sideMenu
+        let menuVC = SideMenuController()
+        menu = SideMenuNavigationController(rootViewController: menuVC)
+        menu?.leftSide = true
+        menu?.setNavigationBarHidden(true, animated: false)
+        SideMenuManager.default.leftMenuNavigationController = menu
+        
+    }
+    
+    
+    @objc private func didTapMenuButton() {
+        present(menu!, animated: true, completion: nil)
+    }
 }
+
+
+
+
+

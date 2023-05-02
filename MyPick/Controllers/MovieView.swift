@@ -13,7 +13,6 @@ import Kingfisher // CACHE IMG
 
 class MovieView: UIView {
     
-    
     private let posterImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -30,6 +29,9 @@ class MovieView: UIView {
         return label
     }()
     
+    
+    var movie: MovieA?
+    var tapGesture: UITapGestureRecognizer?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -52,6 +54,9 @@ class MovieView: UIView {
             titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
+        
+        tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapMovieView))
+        self.addGestureRecognizer(tapGesture!)
     }
     
     required init?(coder: NSCoder) {
@@ -65,7 +70,15 @@ class MovieView: UIView {
             posterImageView.kf.setImage(with: posterUrl)
         }
         titleLabel.text = movie.title
-        
+    }
+    
+    @objc func didTapMovieView() {
+        if let movie = self.movie, let parentViewController = self.next as? UIViewController {
+            let detailsVC = MovieDetails()
+            detailsVC.movie = movie
+            detailsVC.configure(with: movie)
+            parentViewController.navigationController?.pushViewController(detailsVC, animated: true)
+        }
     }
 
 }

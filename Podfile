@@ -17,5 +17,7 @@ target 'MyPick' do
 	pod 'SideMenu'
 	pod 'JSON'
 	pod 'Kingfisher'
+	pod 'SDWebImage'
+	pod 'SideMenu'
 
 end

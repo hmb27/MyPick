@@ -30,7 +30,7 @@ class AccountController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -43,10 +43,6 @@ class AccountController: UIViewController, UITableViewDelegate, UITableViewDataS
             cell.textLabel?.text = "Connect"
         case 2:
             cell.textLabel?.text = "Payment List"
-        case 3:
-            cell.textLabel?.text = "Recently Watched"
-        case 4:
-            cell.textLabel?.text = "Log Out" // add log out code
         default:
             break
         }
@@ -66,23 +62,9 @@ class AccountController: UIViewController, UITableViewDelegate, UITableViewDataS
         case 2:
             let paymentList =  PaymentList()
             navigationController?.pushViewController(paymentList, animated: true)
-        case 3:
-            let recentlyWatched = RecentlyWatched()
-            navigationController?.pushViewController(recentlyWatched, animated: true)
-        case 4:
-            // add log out code
-            break
         default:
             break
         }
         
-        
-        // LIST VIEW
-        
-        //USER DETAILS
-        //CONNECT YOUR APPS
-        //PAYMENT LIST
-        //RECENTLY WATCHED
-        //LOG OUT
     }
 }

@@ -10,8 +10,6 @@ import SideMenu
 
 class HomeController: UIViewController {
     
-    //var menu: SideMenuNavigationController?
-    //MARK: - UI Components
     // label
     private let label: UILabel = {
         let label = UILabel()
@@ -32,11 +30,13 @@ class HomeController: UIViewController {
     } ()
     
     private var tabBarVC: UITabBarController?
+    private var menu: SideMenuNavigationController?
     
     //USER LOG IN - HOME DISPLAY PAGE - Fetching user - displaying user name
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupUI()
+        
         AuthService.shared.fetchUser { [weak self]user, error in
             guard let self = self else { return }
             if let error = error {
@@ -50,13 +50,29 @@ class HomeController: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        //set up side menu
+        let menuVC = SideMenuController()
+        menu = SideMenuNavigationController(rootViewController: menuVC)
+        menu?.leftSide = true
+        menu?.setNavigationBarHidden(true, animated: false)
+        SideMenuManager.default.leftMenuNavigationController = menu
+       // SideMenuManager.default.appPanGestureToPresent(toView: self.view)
+        
+        //display sideMenu
+        let menuButton = UIBarButtonItem(image: UIImage(systemName: "list.dash"), style: .plain, target: self, action: #selector(didTapMenuButton))
+        navigationItem.leftBarButtonItem = menuButton
+        
+    }
+    
     
     //SET UP UI FUNC
     private func setupUI() {
         self.view.backgroundColor = .systemPurple
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(didTapLogOut))
         self.button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
-        //self.button.addTarget(self, action: #selector(didTapMenu), for: .touchUpInside)
         self.view.addSubview(label)
         self.view.addSubview(button)
         self.label.translatesAutoresizingMaskIntoConstraints = false
@@ -65,10 +81,16 @@ class HomeController: UIViewController {
         
         NSLayoutConstraint.activate([
             label.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            label.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+            label.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: -50),
             button.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            button.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+            button.topAnchor.constraint(equalTo: label.bottomAnchor,constant: 50)
+                                        
         ])
+    }
+    
+    
+    @objc private func didTapMenuButton() {
+        present(menu!, animated: true, completion: nil)
     }
     
     //
@@ -83,23 +105,25 @@ class HomeController: UIViewController {
         let tabBarVC  = UITabBarController()
         self.tabBarVC = tabBarVC
         
-        let vc1 = UINavigationController(rootViewController: FirstViewController())
-        let vc2 = UINavigationController(rootViewController: SecondViewController())
-        let vc3 = UINavigationController(rootViewController: ThirdViewController())
+        let vc1 =  FirstViewController()
+        let vc2 =  SecondViewController()
+        let vc3 =  ThirdViewController()
+        let vc4 =  ForthViewController()
         
         vc1.title = "Trending"
         vc2.title = "Search Your Apps"
-        vc3.title = "Account"
+        vc3.title = "Recent"
+        vc4.title = "Account"
         
         tabBarVC.tabBar.backgroundColor = .systemGray2
-        tabBarVC.setViewControllers([vc1, vc2, vc3], animated: false)
+        tabBarVC.setViewControllers([vc1, vc2, vc3, vc4], animated: false)
         
         guard let items = tabBarVC.tabBar.items else {
             return
         }
         
         //image display
-        let images = ["play.circle.fill", "magnifyingglass", "gear"]
+        let images = ["play.circle.fill", "magnifyingglass", "gobackward", "list.dash"]
         for x in 0..<items.count {
             items[x].image = UIImage(systemName: images[x])
         }
@@ -111,32 +135,35 @@ class HomeController: UIViewController {
     }
     
     //tab 1 - trending
-    class FirstViewController: UIViewController {
+    class FirstViewController: TrendingController {
         override func viewDidLoad() {
             super.viewDidLoad()
-            let vc = TrendingController()
-            self.navigationController?.pushViewController(vc, animated: true)
             title = "Trending"
         }
     }
     //tab 2 - search
-    class SecondViewController: UIViewController {
+    class SecondViewController: SearchController {
         override func viewDidLoad() {
             super.viewDidLoad()
-            let vc = SearchController()
-            self.navigationController?.pushViewController(vc, animated: false)
             title = "Search Your Apps"
         }
     }
     //tab 3  - account
-    class ThirdViewController: UIViewController {
+    class ThirdViewController: RecentlyWatched {
         override func viewDidLoad() {
             super.viewDidLoad()
-            let vc = AccountController()
-            self.navigationController?.pushViewController(vc, animated: false)
+            title = "Recent"
+        }
+    }
+    
+    class ForthViewController: AccountController {
+        override func viewDidLoad() {
+            super.viewDidLoad()
             title = "Account"
         }
     }
+    
+    
     //}
     //LOG OUT FUNCTION
     @objc private func didTapLogOut() {
@@ -153,6 +180,7 @@ class HomeController: UIViewController {
         }
     }
 }
+
 
 
 

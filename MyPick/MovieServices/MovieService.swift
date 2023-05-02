@@ -33,7 +33,7 @@ class MovieService {
         AF.request(url).responseDecodable(of: MovieResponse.self) { response in
             switch response.result {
             case .success(let movieResponse):
-                print("Received movie response:", movieResponse)
+                //print("Received movie response:", movieResponse)
                 let movies: [MovieA]
                 if let movieArray = movieResponse.results {
                     // The response is an array
