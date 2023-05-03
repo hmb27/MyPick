@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		60426C1529C0878B0026EC1E /* ServiceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60426C1429C0878B0026EC1E /* ServiceList.swift */; };
 		60426C1B29C0C80A0026EC1E /* AccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60426C1A29C0C80A0026EC1E /* AccountController.swift */; };
-		6055070629F959BF0056D336 /* movie_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 6055070529F959BF0056D336 /* movie_info.json */; };
-		6055070D29F96B400056D336 /* search_controller.json.json in Resources */ = {isa = PBXBuildFile; fileRef = 6055070C29F96B400056D336 /* search_controller.json.json */; };
 		605BA5BF29F9236400AB9A92 /* MovieA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605BA5BE29F9236400AB9A92 /* MovieA.swift */; };
 		605BA5C429F92AF300AB9A92 /* MovieService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605BA5C329F92AF300AB9A92 /* MovieService.swift */; };
 		605BA5C629F92D5700AB9A92 /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605BA5C529F92D5700AB9A92 /* utils.swift */; };
@@ -39,24 +37,34 @@
 		60AA3CCC29B5F7DC008F05DE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60AA3CCB29B5F7DC008F05DE /* SceneDelegate.swift */; };
 		60AA3CD329B5F7DD008F05DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60AA3CD229B5F7DD008F05DE /* Assets.xcassets */; };
 		60AA3CD629B5F7DD008F05DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60AA3CD429B5F7DD008F05DE /* LaunchScreen.storyboard */; };
+		60AB66E72A02586B002F298D /* MyPickUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60AB66E62A02586B002F298D /* MyPickUITests.swift */; };
+		60AB66E92A02586B002F298D /* MyPickUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60AB66E82A02586B002F298D /* MyPickUITestsLaunchTests.swift */; };
+		60AB66F02A028352002F298D /* UsersAppsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60AB66EF2A028352002F298D /* UsersAppsController.swift */; };
+		60AB66F22A0291AF002F298D /* TabListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60AB66F12A0291AF002F298D /* TabListController.swift */; };
 		60ABE43D29FA81C90094CD23 /* TrendingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60ABE43C29FA81C90094CD23 /* TrendingController.swift */; };
 		60AF696429FFCE2F00CD1DD8 /* SideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60AF696329FFCE2F00CD1DD8 /* SideMenuController.swift */; };
 		60BDCDB229BF2BD2004AFB34 /* LoginUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BDCDB129BF2BD2004AFB34 /* LoginUserRequest.swift */; };
 		60BDCDB429BF3983004AFB34 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BDCDB329BF3983004AFB34 /* Validator.swift */; };
 		60BDCDB629BF70E2004AFB34 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BDCDB529BF70E2004AFB34 /* User.swift */; };
-		60C5CCE329EDE8DE003219AA /* DateClickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C5CCE229EDE8DE003219AA /* DateClickerController.swift */; };
 		60D99CE529CE561300DAB066 /* PaymentList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D99CE429CE561300DAB066 /* PaymentList.swift */; };
 		60E8C27929FC3B7F00FB2E15 /* MovieDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E8C27829FC3B7F00FB2E15 /* MovieDetails.swift */; };
 		60ECD8F129C76F7E0028B8AB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 60ECD8F029C76F7E0028B8AB /* GoogleService-Info.plist */; };
 		942055F0DAEFB8C77C54DEE3 /* Pods_MyPick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69C585ADED4374E65E5177B4 /* Pods_MyPick.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		60AB66EA2A02586B002F298D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 60AA3CBE29B5F7DC008F05DE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 60AA3CC529B5F7DC008F05DE;
+			remoteInfo = MyPick;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		60426C1429C0878B0026EC1E /* ServiceList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceList.swift; sourceTree = "<group>"; };
 		60426C1A29C0C80A0026EC1E /* AccountController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountController.swift; sourceTree = "<group>"; };
-		6055070529F959BF0056D336 /* movie_info.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = movie_info.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.json; };
-		6055070929F95B900056D336 /* movie_list.json.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = movie_list.json.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.json; };
-		6055070C29F96B400056D336 /* search_controller.json.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = search_controller.json.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.json; };
 		605BA5BE29F9236400AB9A92 /* MovieA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieA.swift; sourceTree = "<group>"; };
 		605BA5C329F92AF300AB9A92 /* MovieService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieService.swift; sourceTree = "<group>"; };
 		605BA5C529F92D5700AB9A92 /* utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utils.swift; sourceTree = "<group>"; };
@@ -87,12 +95,16 @@
 		60AA3CD229B5F7DD008F05DE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		60AA3CD529B5F7DD008F05DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		60AA3CD729B5F7DD008F05DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		60AB66E42A02586B002F298D /* MyPickUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyPickUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		60AB66E62A02586B002F298D /* MyPickUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPickUITests.swift; sourceTree = "<group>"; };
+		60AB66E82A02586B002F298D /* MyPickUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPickUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		60AB66EF2A028352002F298D /* UsersAppsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersAppsController.swift; sourceTree = "<group>"; };
+		60AB66F12A0291AF002F298D /* TabListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabListController.swift; sourceTree = "<group>"; };
 		60ABE43C29FA81C90094CD23 /* TrendingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingController.swift; sourceTree = "<group>"; };
 		60AF696329FFCE2F00CD1DD8 /* SideMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuController.swift; sourceTree = "<group>"; };
 		60BDCDB129BF2BD2004AFB34 /* LoginUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUserRequest.swift; sourceTree = "<group>"; };
 		60BDCDB329BF3983004AFB34 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		60BDCDB529BF70E2004AFB34 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		60C5CCE229EDE8DE003219AA /* DateClickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateClickerController.swift; sourceTree = "<group>"; };
 		60D99CE429CE561300DAB066 /* PaymentList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentList.swift; sourceTree = "<group>"; };
 		60E8C27829FC3B7F00FB2E15 /* MovieDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetails.swift; sourceTree = "<group>"; };
 		60ECD8F029C76F7E0028B8AB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -107,6 +119,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				942055F0DAEFB8C77C54DEE3 /* Pods_MyPick.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		60AB66E12A02586B002F298D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,16 +147,6 @@
 				60A5435B29BE7E7900B5A9CC /* Models */,
 			);
 			path = MovieServices;
-			sourceTree = "<group>";
-		};
-		605BA5C929F938ED00AB9A92 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				6055070529F959BF0056D336 /* movie_info.json */,
-				6055070929F95B900056D336 /* movie_list.json.json */,
-				6055070C29F96B400056D336 /* search_controller.json.json */,
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 		609E9D1B29B7B0AB001D3812 /* Views */ = {
@@ -165,12 +174,13 @@
 				60A2B02829CE52E2009BCC01 /* UserDetailsViewController.swift */,
 				60D99CE429CE561300DAB066 /* PaymentList.swift */,
 				6070A8B129CE569100884D8B /* RecentlyWatched.swift */,
-				60C5CCE229EDE8DE003219AA /* DateClickerController.swift */,
 				605BA5D629F94D1900AB9A92 /* MovieView.swift */,
 				609A642829BA641500438F35 /* WebViewerController.swift */,
 				60ABE43C29FA81C90094CD23 /* TrendingController.swift */,
 				60E8C27829FC3B7F00FB2E15 /* MovieDetails.swift */,
 				60AF696329FFCE2F00CD1DD8 /* SideMenuController.swift */,
+				60AB66EF2A028352002F298D /* UsersAppsController.swift */,
+				60AB66F12A0291AF002F298D /* TabListController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -207,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				60AA3CC829B5F7DC008F05DE /* MyPick */,
+				60AB66E52A02586B002F298D /* MyPickUITests */,
 				60AA3CC729B5F7DC008F05DE /* Products */,
 				9EF4EE963E3758992FEF5A8C /* Pods */,
 				0F9D729BD6834723F5276D5D /* Frameworks */,
@@ -217,6 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				60AA3CC629B5F7DC008F05DE /* MyPick.app */,
+				60AB66E42A02586B002F298D /* MyPickUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -231,10 +243,18 @@
 				60A5435629BE6E1C00B5A9CC /* Controllers */,
 				609E9D1B29B7B0AB001D3812 /* Views */,
 				60AA3CD729B5F7DD008F05DE /* Info.plist */,
-				605BA5C929F938ED00AB9A92 /* Resources */,
 				60A5E74029B740210022434E /* Supporting */,
 			);
 			path = MyPick;
+			sourceTree = "<group>";
+		};
+		60AB66E52A02586B002F298D /* MyPickUITests */ = {
+			isa = PBXGroup;
+			children = (
+				60AB66E62A02586B002F298D /* MyPickUITests.swift */,
+				60AB66E82A02586B002F298D /* MyPickUITestsLaunchTests.swift */,
+			);
+			path = MyPickUITests;
 			sourceTree = "<group>";
 		};
 		9EF4EE963E3758992FEF5A8C /* Pods */ = {
@@ -268,6 +288,24 @@
 			productReference = 60AA3CC629B5F7DC008F05DE /* MyPick.app */;
 			productType = "com.apple.product-type.application";
 		};
+		60AB66E32A02586B002F298D /* MyPickUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 60AB66EE2A02586B002F298D /* Build configuration list for PBXNativeTarget "MyPickUITests" */;
+			buildPhases = (
+				60AB66E02A02586B002F298D /* Sources */,
+				60AB66E12A02586B002F298D /* Frameworks */,
+				60AB66E22A02586B002F298D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				60AB66EB2A02586B002F298D /* PBXTargetDependency */,
+			);
+			name = MyPickUITests;
+			productName = MyPickUITests;
+			productReference = 60AB66E42A02586B002F298D /* MyPickUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -280,6 +318,10 @@
 				TargetAttributes = {
 					60AA3CC529B5F7DC008F05DE = {
 						CreatedOnToolsVersion = 14.2;
+					};
+					60AB66E32A02586B002F298D = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 60AA3CC529B5F7DC008F05DE;
 					};
 				};
 			};
@@ -297,6 +339,7 @@
 			projectRoot = "";
 			targets = (
 				60AA3CC529B5F7DC008F05DE /* MyPick */,
+				60AB66E32A02586B002F298D /* MyPickUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -307,11 +350,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				60AA3CD629B5F7DD008F05DE /* LaunchScreen.storyboard in Resources */,
-				6055070D29F96B400056D336 /* search_controller.json.json in Resources */,
-				6055070629F959BF0056D336 /* movie_info.json in Resources */,
 				60ECD8F129C76F7E0028B8AB /* GoogleService-Info.plist in Resources */,
 				60AA3CD329B5F7DD008F05DE /* Assets.xcassets in Resources */,
 				609705FA29C747C100E2A5FD /* DataCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		60AB66E22A02586B002F298D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,9 +413,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				609E9D1329B7B034001D3812 /* ForgotPasswordController.swift in Sources */,
+				60AB66F22A0291AF002F298D /* TabListController.swift in Sources */,
 				60E8C27929FC3B7F00FB2E15 /* MovieDetails.swift in Sources */,
 				6075ADFC29CBBDCC0073D981 /* SearchController.swift in Sources */,
-				60C5CCE329EDE8DE003219AA /* DateClickerController.swift in Sources */,
 				60A5435829BE6E4A00B5A9CC /* AlertManager.swift in Sources */,
 				609E9D1A29B7B07F001D3812 /* HomeController.swift in Sources */,
 				6075ADFA29CBBC520073D981 /* ServiceButton.swift in Sources */,
@@ -391,6 +439,7 @@
 				6075ADF829CBB9410073D981 /* serviceHeaderView.swift in Sources */,
 				60AF696429FFCE2F00CD1DD8 /* SideMenuController.swift in Sources */,
 				605BA5C429F92AF300AB9A92 /* MovieService.swift in Sources */,
+				60AB66F02A028352002F298D /* UsersAppsController.swift in Sources */,
 				60AA3CCC29B5F7DC008F05DE /* SceneDelegate.swift in Sources */,
 				6070A8B229CE569100884D8B /* RecentlyWatched.swift in Sources */,
 				609E9D1529B7B047001D3812 /* LoginController.swift in Sources */,
@@ -402,7 +451,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		60AB66E02A02586B002F298D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				60AB66E72A02586B002F298D /* MyPickUITests.swift in Sources */,
+				60AB66E92A02586B002F298D /* MyPickUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		60AB66EB2A02586B002F298D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 60AA3CC529B5F7DC008F05DE /* MyPick */;
+			targetProxy = 60AB66EA2A02586B002F298D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		60AA3CD429B5F7DD008F05DE /* LaunchScreen.storyboard */ = {
@@ -586,6 +652,40 @@
 			};
 			name = Release;
 		};
+		60AB66EC2A02586B002F298D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 28GCVVSS8M;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = MyPick.MyPickUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MyPick;
+			};
+			name = Debug;
+		};
+		60AB66ED2A02586B002F298D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 28GCVVSS8M;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = MyPick.MyPickUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MyPick;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -603,6 +703,15 @@
 			buildConfigurations = (
 				60AA3CDB29B5F7DD008F05DE /* Debug */,
 				60AA3CDC29B5F7DD008F05DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		60AB66EE2A02586B002F298D /* Build configuration list for PBXNativeTarget "MyPickUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				60AB66EC2A02586B002F298D /* Debug */,
+				60AB66ED2A02586B002F298D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

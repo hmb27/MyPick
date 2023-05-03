@@ -11,29 +11,32 @@ import FirebaseFirestore
 import FirebaseStorage
 import FirebaseAuth
 
-class SearchController: UIViewController, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate {
+class SearchController: UIViewController, UISearchBarDelegate {
     
     let searchBar = UISearchBar()
-    let tableView = UITableView()
     let reuseIdentifier = "DataCell"
     var serviceArray: [Service] = []
     var db: Firestore!
     var db2: CollectionReference!
     var currentUser: User?
     let resultsLabel = UILabel()
+    let headerView = UIView()
+    var selectedService: Service?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         db = Firestore.firestore()
-        tableView.frame = view.bounds
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.register(DataCell.self, forCellReuseIdentifier: reuseIdentifier)
+        self.navigationController?.navigationBar.barTintColor = UIColor.white
         searchBar.placeholder = "Search Your Apps"
         searchBar.delegate = self
         view.addSubview(searchBar)
-        view.addSubview(tableView)
+        self.view.backgroundColor = .white
+        
+        
+        //header view - color change
+        headerView.backgroundColor = .white
+        view.addSubview(headerView)
         
         //reference to current user logged in
         AuthService.shared.fetchUser { user, error in
@@ -54,19 +57,12 @@ class SearchController: UIViewController, UISearchBarDelegate, UITableViewDataSo
                                 self.serviceArray.append(service)
                             }
                         }
-                        self.tableView.reloadData()
                     }
                 }
                 
             }
         }
         
-        
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 4).isActive = true
-        tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
         
         searchBar.translatesAutoresizingMaskIntoConstraints = false
         searchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8).isActive = true
@@ -82,7 +78,7 @@ class SearchController: UIViewController, UISearchBarDelegate, UITableViewDataSo
     }
     
     func searchForUserInput(withText searchText: String) {
-        var availableServices: [String] = [] // create the array
+        var availableServices: [(name: String, url: String)] = [] // create the array
         let group = DispatchGroup()
         let lowercaseSearchText = searchText.lowercased()
         
@@ -98,7 +94,7 @@ class SearchController: UIViewController, UISearchBarDelegate, UITableViewDataSo
                 if let error = error {
                     print("Error gettng documents")
                 } else if let doc = querySnapshot?.documents.first {
-                    availableServices.append(service.name) // to create a list of the available apps user search is on
+                    availableServices.append((name: service.name, url: service.url)) // to create a list of the available apps user search is on - tuples array
                 }
             }
         }
@@ -107,8 +103,8 @@ class SearchController: UIViewController, UISearchBarDelegate, UITableViewDataSo
             if availableServices.isEmpty {
                 self.resultsLabel.text = "Not available on any of your apps"
             } else {
-                let servicesString = availableServices.joined(separator: ", ")
-                self.resultsLabel.text = "This is available on: \(servicesString)"
+                self.resultsLabel.text = "This is available on:"
+                self.tableView.reloadData()
             }
         }
         
@@ -131,28 +127,6 @@ class SearchController: UIViewController, UISearchBarDelegate, UITableViewDataSo
             return UITableViewCell()
         }
         
-        let service = serviceArray[indexPath.row]
-        cell.dataTitleText.text = service.name
-        
-        let storageRef = Storage.storage().reference(forURL: service.url)
-        storageRef.getData(maxSize: 28060876) { (data, error) in
-            if let err = error {
-                print(err)
-            } else {
-                if let image = data {
-                    let myImage = UIImage(data: image)
-                    cell.dataImageView.image = myImage
-                }
-                
-            }
-        }
-        
-        //remove "connect" button - UIBUG
-        for subview in cell.contentView.subviews {
-            if let button = subview as? UIButton {
-                button.removeFromSuperview()
-            }
-        }
         return cell
     }
 }

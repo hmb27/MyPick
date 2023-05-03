@@ -143,81 +143,76 @@ class ServiceList: UIViewController, UITableViewDataSource, UITableViewDelegate 
         // func to add service to userServices when CONNECT is tapped
     @objc private func didTapConnect(_ sender: UIButton) {
         if let indexPath = tableView.indexPathForSelectedRow {
-            let selectedService = serviceArray[indexPath.row]
-            let vc = serviceLogIn()
-            self.navigationController?.pushViewController(vc, animated: true)
-            guard let currentUser = currentUser else {
-                print("No user logged in.")
-                return
-            }
-            
+              let selectedService = serviceArray[indexPath.row]
+              let vc = serviceLogIn()
+              self.navigationController?.pushViewController(vc, animated: true)
+              guard let currentUser = currentUser else {
+                  print("No user logged in.")
+                  return
+              }
+                    
             let userServicesDocumentRef = db.collection("users").document(currentUser.userUID ?? "").collection("userServices").document(selectedService.name)
             let batch = db.batch()
-            
+                    
             // Add "services" collection and its "movies" and "TVShows" subcollections to "userServices"
-            let servicesCollectionRef = db.collection("services")
-            let servicesQuery = servicesCollectionRef.whereField("name", isEqualTo: selectedService.name)
-            servicesQuery.getDocuments { (snapshot, error) in
-                if let error = error {
-                    print("Error getting services collection: \(error.localizedDescription)")
-                    return
-                }
-                
-                guard let document = snapshot?.documents.first else {
-                    print("No document found for service: \(selectedService.name)")
-                    return
-                }
-                
-                let serviceData = document.data()
-                //let serviceRef = userServicesDocumentRef.collection("services").document(document.documentID)
-                batch.setData(serviceData, forDocument: userServicesDocumentRef)
-                
-                let moviesCollectionRef = servicesCollectionRef.document(document.documentID).collection("movies")
-                let tvShowsCollectionRef = servicesCollectionRef.document(document.documentID).collection("TVShows")
-                
-                let moviesQuery = moviesCollectionRef.order(by: "MovieTitle")
-                let tvShowsQuery = tvShowsCollectionRef.order(by: "showTitle")
-                
-                moviesQuery.getDocuments { (snapshot, error) in
-                    if let error = error {
-                        print("Error getting movies sub-collection: \(error.localizedDescription)")
-                        return
-                    }
-                    for movieDocument in snapshot!.documents {
-                        let movieData = movieDocument.data()
-                        if let movieTitle = movieData["MovieTitle"] as? String {
-                            let movieRef = userServicesDocumentRef.collection("movies").document(movieDocument.documentID)
-                            batch.setData(["MovieTitle": movieTitle], forDocument: movieRef)
-                        }
-                    }
-                    
-                    let tvShowsQuery = tvShowsCollectionRef.order(by: "showTitle") // creates query for tvShows subcollection
-                    
-                    tvShowsQuery.getDocuments { (snapshot, error ) in
-                        if let error = error {
-                            print("Error getting TVShows sub-collection: \(error.localizedDescription)")
-                            return
-                        }
-                        for tvShowDocument in snapshot!.documents {
-                            let tvShowData = tvShowDocument.data()
-                            if let showTitle = tvShowData["showTitle"] as? String {
-                                let tvShowRef = userServicesDocumentRef.collection("TVShows").document(tvShowDocument.documentID)
-                                batch.setData(["showTitle": showTitle], forDocument: tvShowRef)
-                            }
-                        }
-                        
-                        batch.commit { error in
-                            if let error = error {
-                                print("Error adding sub-collections to userServices: \(error.localizedDescription)")
-                            } else {
-                                print("Sub-collections added to userServices successfully")
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
+              let servicesCollectionRef = db.collection("services")
+              let servicesQuery = servicesCollectionRef.whereField("name", isEqualTo: selectedService.name)
+              servicesQuery.getDocuments { (snapshot, error) in
+                  if let error = error {
+                      print("Error getting services collection: \(error.localizedDescription)")
+                      return
+                  }
+                  
+                  guard let document = snapshot?.documents.first else {
+                      print("No document found for service: \(selectedService.name)")
+                      return
+                  }
+                  
+                  
+                  let serviceData = document.data()
+                  batch.setData(serviceData, forDocument: userServicesDocumentRef) // adds all subocllections to userServices
+                  
+                  let moviesCollectionRef = servicesCollectionRef.document(document.documentID).collection("movies")
+                  let tvShowsCollectionRef = servicesCollectionRef.document(document.documentID).collection("TVShows")
+                  
+                  let moviesQuery = moviesCollectionRef.order(by: "MovieTitle")
+                  let tvShowsQuery = tvShowsCollectionRef.order(by: "showTitle")
+                  
+                  moviesQuery.getDocuments { (snapshot, error) in
+                      if let error = error {
+                          print("Error getting movies sub-collection: \(error.localizedDescription)")
+                          return
+                      }
+                      
+                      for movieDocument in snapshot!.documents {
+                          let movieData = movieDocument.data()
+                          let movieRef = userServicesDocumentRef.collection("movies").document(movieDocument.documentID)
+                          batch.setData(movieData, forDocument: movieRef)
+                      }
+                      
+                      tvShowsQuery.getDocuments { (snapshot, error ) in
+                          if let error = error {
+                              print("Error getting TVShows sub-collection: \(error.localizedDescription)")
+                              return
+                          }
+                          for tvShowDocument in snapshot!.documents {
+                              let tvShowData = tvShowDocument.data()
+                              let tvShowRef = userServicesDocumentRef.collection("TVShows").document(tvShowDocument.documentID)
+                              batch.setData(tvShowData, forDocument: tvShowRef)
+                          }
+                          
+                          batch.commit { error in
+                              if let error = error {
+                                  print("Error adding sub-collections to userServices: \(error.localizedDescription)")
+                              } else {
+                                  print("Sub-collections added to userServices successfully")
+                              }
+                          }
+                      }
+                  }
+              }
+          }
+      }
         
     }
     

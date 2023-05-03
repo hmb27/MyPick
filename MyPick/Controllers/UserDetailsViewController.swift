@@ -13,57 +13,70 @@ import FirebaseFirestore
 
 class UserDetailsViewController: UIViewController {
     
+    let reuseIdentifier = "DataCell"
+    var serviceArray: [Service] = []
+    var db: Firestore!
+    var db2: CollectionReference!
+    var currentUser: User?
+    let headerView = UIView()
+    let label = UILabel()
+    let imageView = UIImageView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemMint
-        let labelRect = CGRect(x: 50, y: 100, width: 200, height: 100)
-        let label = UILabel(frame: labelRect)
-        label.text  = "INSIDE USERDETAILS"
-        label.numberOfLines = 2
-        view.addSubview(label)
+        view.backgroundColor = .white
+        let nameLabel = UILabel()
+        let emailLabel = UILabel()
+        let stackView = UIStackView(arrangedSubviews: [nameLabel, emailLabel])
+        stackView.axis = .vertical
+        stackView.spacing = 8
+        imageView.image = UIImage(named: "ProfilePic")
+        db = Firestore.firestore()
+        view.addSubview(imageView)
+        view.addSubview(stackView)
+  
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        //DisplayConstraints
+        NSLayoutConstraint.activate([
+            imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            imageView.widthAnchor.constraint(equalToConstant: 50),
+            imageView.heightAnchor.constraint(equalToConstant: 50),
+            
+            stackView.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 32),
+            stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            
+        ])
+        
+        //reference to current user logged in
+        AuthService.shared.fetchUser { user, error in
+            if let error = error {
+                print("Error fetching user: /(error.localizedDescription)")
+            } else if let user = user {
+                self.currentUser = user
+                self.db2 = self.db.collection("users").document(user.userUID ?? "").collection("userServices")
+                self.db2.getDocuments() { (QuerySnapshot, error ) in
+                    if let error = error {
+                        print("Error getting documents: \(error)")
+                    } else {
+                        for document in QuerySnapshot!.documents {
+                            let data = document.data()
+                            if let name = data["name"] as? String,
+                               let url = data["url"] as? String {
+                                let service = Service(name: name, url: url)
+                                self.serviceArray.append(service)
+                            }
+                        }
+                        
+                        nameLabel.text = "Username: \(user.username ?? "N/A")"
+                        emailLabel.text = "Email: \(user.email ?? "N/A")"
+                    }
+                }
+                
+            }
+        }
     }
 }
-       
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        /*super.viewDidLoad()
-        AuthService.shared.fetchUser { [weak self]user, error in
-                guard let self = self else { return }
-                if let error = error {
-                    AlertManager.showFetchingUserError(on: self, with: error)
-                    return
-                }
-                if let user = user {
-                    let labelRect = CGRect(x: 50, y: 100, width: 200, height: 100)
-                    let label = UILabel(frame: labelRect)
-                    self.label.text = "Username: \(user.username)"
-                }
-            }
-            
-        }
-    
-    
-    private func setupUI() {
-        self.view.backgroundColor = .systemPurple
-        self.label.translatesAutoresizingMaskIntoConstraints = false
-        
-        
-        NSLayoutConstraint.activate([
-            label.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            label.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
-        ])
-    }
 
-    }
-
-*/
 

@@ -71,20 +71,7 @@ class TrendingController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         title = "Trending"
-        
-        //Display sideMenu
-        let menuButton = UIBarButtonItem(image: UIImage(systemName: "list.dash"), style: .plain, target: self, action: #selector(didTapMenuButton))
-        navigationItem.leftBarButtonItem = menuButton
-        
-        //set up sideMenu
-        let menuVC = SideMenuController()
-        menu = SideMenuNavigationController(rootViewController: menuVC)
-        menu?.leftSide = true
-        menu?.setNavigationBarHidden(true, animated: false)
-        SideMenuManager.default.leftMenuNavigationController = menu
-        
-        //present sidemenu
-        present(menu!, animated: true, completion: nil)
+    
         //add to scrollView
         view.addSubview(scrollView)
         scrollView.addSubview(popularLabel)
@@ -196,16 +183,8 @@ class TrendingController: UIViewController {
         }
     }
     
-    @objc private func didTapMenuButton() {
-        present(menu!, animated: true)
-       
-    }
-    
    @objc private func didTapMovieView(_ sender: UITapGestureRecognizer) {
-        guard let movieView = sender.view as? MovieView else { return }
-        let movieDetailsVC = MovieDetails()
-        movieDetailsVC.movie = movieView.movie
-        navigationController?.pushViewController(movieDetailsVC, animated: true)
+
     }
 }
 

@@ -103,4 +103,15 @@ extension AlertManager {
     
 }
 
+extension AlertManager {
+    
+    public static func showDuplicateAdd(on vc: UIViewController, with error: Error) {
+        self.showBasicAlert(on: vc, title: "Error: You have already connected", message: "\(error.localizedDescription)")
+    }
+    
+    public static func showUnknownDuplicateAddError(on vc: UIViewController) {
+        self.showBasicAlert(on: vc, title: "Unknown Duplicate Error", message: nil)
+    }
+}
+
 

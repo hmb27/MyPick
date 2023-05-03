@@ -12,37 +12,48 @@ import FirebaseDatabase
 
 class AccountController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    
-    
     var tableView: UITableView!
+    
+    // MARK: - UI Components
+    private let logoImageView: UIImageView = {
+        let iv = UIImageView()
+        iv.contentMode = .scaleAspectFit
+        iv.image = UIImage(named: "logo" )
+        iv.tintColor = .white
+        return iv
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       // self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(didTapLogOut))
         
         
         tableView = UITableView(frame: view.bounds, style: .plain)
         tableView.delegate = self
         tableView.dataSource = self
+        view.addSubview(logoImageView)
         view.addSubview(tableView)
-        
+    
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 4
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        
         switch indexPath.row {
         case 0:
-            cell.textLabel?.text = "User Details"
+            cell.textLabel?.text = "Account Details"
         case 1:
-            cell.textLabel?.text = "Connect"
+            cell.textLabel?.text = "Your Apps"
         case 2:
-            cell.textLabel?.text = "Payment List"
+            cell.textLabel?.text = "Connect"
+        case 3:
+            cell.textLabel?.text = "Subscription Renewal Dates"
         default:
             break
         }
@@ -50,6 +61,7 @@ class AccountController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("Selected row at index path: \(indexPath)")
         let backButton = UIBarButtonItem(title: "Return", style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = backButton
         switch indexPath.row {
@@ -57,9 +69,12 @@ class AccountController: UIViewController, UITableViewDelegate, UITableViewDataS
             let usersDetailsVC = UserDetailsViewController()
             navigationController?.pushViewController(usersDetailsVC, animated: true)
         case 1:
-            let serviceList = ServiceList()
-            navigationController?.pushViewController(serviceList, animated: true)
+            let userAppsVC = UsersAppsController()
+            navigationController?.pushViewController(userAppsVC, animated: true)
         case 2:
+            let serviceListVC = ServiceList()
+            navigationController?.pushViewController(serviceListVC, animated: true)
+        case 3:
             let paymentList =  PaymentList()
             navigationController?.pushViewController(paymentList, animated: true)
         default:
@@ -67,4 +82,19 @@ class AccountController: UIViewController, UITableViewDelegate, UITableViewDataS
         }
         
     }
+    
+    //LOG OUT FUNCTION
+    /*@objc private func didTapLogOut() {
+        AuthService.shared.signOut { [weak self] error in
+            guard let self = self else { return }
+            if let error = error {
+                AlertManager.showLogoutError(on: self, with: error)
+                return
+            }
+            if let sceneDelegate = self.view.window?.windowScene?.delegate as?
+                SceneDelegate {
+                sceneDelegate.checkAuthentication()
+            }
+        }
+    }*/
 }

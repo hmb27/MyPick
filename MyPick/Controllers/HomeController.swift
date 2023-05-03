@@ -156,7 +156,7 @@ class HomeController: UIViewController {
         }
     }
     
-    class ForthViewController: AccountController {
+    class ForthViewController: TabListController {
         override func viewDidLoad() {
             super.viewDidLoad()
             title = "Account"
