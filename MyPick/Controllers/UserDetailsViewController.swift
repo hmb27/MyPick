@@ -10,6 +10,7 @@ import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
 import FirebaseFirestore
+import Lottie
 
 class UserDetailsViewController: UIViewController {
     
@@ -20,34 +21,39 @@ class UserDetailsViewController: UIViewController {
     var currentUser: User?
     let headerView = UIView()
     let label = UILabel()
-    let imageView = UIImageView()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(red: 0.8627, green: 0.7686, blue: 0.9294, alpha: 1.0)
         let nameLabel = UILabel()
         let emailLabel = UILabel()
         let stackView = UIStackView(arrangedSubviews: [nameLabel, emailLabel])
         stackView.axis = .vertical
         stackView.spacing = 8
-        imageView.image = UIImage(named: "ProfilePic")
+        let animationView = LottieAnimationView(name: "96249-user")
+        self.view.addSubview(animationView)
         db = Firestore.firestore()
-        view.addSubview(imageView)
         view.addSubview(stackView)
   
-        imageView.translatesAutoresizingMaskIntoConstraints = false
+        animationView.translatesAutoresizingMaskIntoConstraints = false
         stackView.translatesAutoresizingMaskIntoConstraints = false
         //DisplayConstraints
         NSLayoutConstraint.activate([
-            imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            imageView.widthAnchor.constraint(equalToConstant: 50),
-            imageView.heightAnchor.constraint(equalToConstant: 50),
-            
-            stackView.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 32),
+            animationView.topAnchor.constraint(equalTo: view.topAnchor, constant: 32),
+            animationView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            animationView.widthAnchor.constraint(equalToConstant: 200),
+            animationView.heightAnchor.constraint(equalToConstant: 200),
+            stackView.topAnchor.constraint(equalTo: animationView.bottomAnchor, constant: 32),
             stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
             
         ])
+        
+        animationView.loopMode = .loop
+        animationView.play()
+        
+        //log out button to navigation bar
+        let logoutButton = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(didTapLogOut))
+        navigationItem.rightBarButtonItem = logoutButton
         
         //reference to current user logged in
         AuthService.shared.fetchUser { user, error in
@@ -74,6 +80,20 @@ class UserDetailsViewController: UIViewController {
                     }
                 }
                 
+            }
+        }
+    }
+    
+    @objc private func didTapLogOut() {
+        AuthService.shared.signOut { [weak self] error in
+            guard let self = self else { return }
+            if let error = error {
+                AlertManager.showLogoutError(on: self, with: error)
+                return
+            }
+            if let sceneDelegate = self.view.window?.windowScene?.delegate as?
+                SceneDelegate {
+                sceneDelegate.checkAuthentication()
             }
         }
     }

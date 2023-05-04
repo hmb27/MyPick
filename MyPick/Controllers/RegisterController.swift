@@ -10,7 +10,7 @@ import UIKit
 class RegisterController: UIViewController {
     
     //MARK: - UI Components
-    private let headerView = AuthHeaderView(title: "Sign Up", subTitle: "Create your account")
+    private let headerView = AuthHeaderView(title: "MyPick", subTitle: "Create your account")
     
     private let usernameField = CustomTextField(fieldType: .username)
     private let emailField = CustomTextField(fieldType: .email)
@@ -45,7 +45,6 @@ class RegisterController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupUI()
-        
         self.termsTextView.delegate = self
         self.signUpButton.addTarget(self, action: #selector(didTapSignUp), for: .touchUpInside)
         self.signInButton.addTarget(self, action: #selector(didTapSignIn), for: .touchUpInside)

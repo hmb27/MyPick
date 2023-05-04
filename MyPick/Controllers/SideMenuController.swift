@@ -26,6 +26,7 @@ class SideMenuController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         db = Firestore.firestore()
+        view.backgroundColor = UIColor(red: 0.9686, green: 0.9686, blue: 0.9294, alpha: 1)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         
         
@@ -93,7 +94,7 @@ class SideMenuController: UITableViewController {
         }
         
         if let viewController = rootViewController {
-            viewController.view.backgroundColor = .white
+            viewController.view.backgroundColor = UIColor(red: 0.9686, green: 0.9686, blue: 0.9294, alpha: 1)
             let navigationController = UINavigationController(rootViewController: viewController)
             present(navigationController, animated: true, completion: nil)
     

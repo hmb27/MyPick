@@ -19,5 +19,6 @@ target 'MyPick' do
 	pod 'Kingfisher'
 	pod 'SDWebImage'
 	pod 'SideMenu'
+	pod 'lottie-ios'
 
 end

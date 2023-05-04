@@ -10,7 +10,7 @@ import UIKit
 class LoginController: UIViewController {
     
     //MARK: - UI Components
-    private let headerView = AuthHeaderView(title: "Sign In", subTitle: "Sign into your account now")
+    private let headerView = AuthHeaderView(title: "MyPick", subTitle: "Sign into your account now")
     
     private let emailField = CustomTextField(fieldType: .email)
     private let passwordField = CustomTextField(fieldType: .password)
@@ -24,7 +24,6 @@ class LoginController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupUI()
-        
         self.signInButton.addTarget(self, action: #selector(didTapSignIn), for: .touchUpInside)
         self.newUserButton.addTarget(self, action: #selector(didTapNewUser), for: .touchUpInside)
         self.forgotPasswordButton.addTarget(self, action: #selector(didTapForgotPassword), for: .touchUpInside)

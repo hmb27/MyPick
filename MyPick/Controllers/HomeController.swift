@@ -7,13 +7,14 @@
 
 import UIKit
 import SideMenu
+import Lottie
 
 class HomeController: UIViewController {
-    
+
     // label
     private let label: UILabel = {
         let label = UILabel()
-        label.textColor = .label
+        label.textColor = .black
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 24, weight: .semibold)
         label.text = "Loading... "
@@ -23,14 +24,15 @@ class HomeController: UIViewController {
     // button
     private let button: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 200, height: 52))
-        button.setTitle("lets go", for: .normal)
-        button.backgroundColor = .white
+        button.setTitle("Too Lazy to Search? Its ok..Tap to start", for: .normal)
+        button.backgroundColor = UIColor(red: 0.8902, green: 0.9294, blue: 0.9059, alpha: 1)
         button.setTitleColor(.black, for: .normal)
         return button
     } ()
     
     private var tabBarVC: UITabBarController?
     private var menu: SideMenuNavigationController?
+    
     
     //USER LOG IN - HOME DISPLAY PAGE - Fetching user - displaying user name
     override func viewDidLoad() {
@@ -44,7 +46,7 @@ class HomeController: UIViewController {
                 return
             }
             if let user = user {
-                self.label.text = "Welcome \(user.username)\n lets get started"
+                self.label.text = "Welcome Back \(user.username)\n"
             }
         }
         
@@ -63,6 +65,7 @@ class HomeController: UIViewController {
         
         //display sideMenu
         let menuButton = UIBarButtonItem(image: UIImage(systemName: "list.dash"), style: .plain, target: self, action: #selector(didTapMenuButton))
+        menuButton.tintColor = .black
         navigationItem.leftBarButtonItem = menuButton
         
     }
@@ -70,22 +73,30 @@ class HomeController: UIViewController {
     
     //SET UP UI FUNC
     private func setupUI() {
-        self.view.backgroundColor = .systemPurple
+        view.backgroundColor = UIColor(red: 0.8902, green: 0.9294, blue: 0.9059, alpha: 1)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(didTapLogOut))
         self.button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
+        let animationView = LottieAnimationView(name: "65506-tv-robo-walking-animation")
+        self.view.addSubview(animationView)
         self.view.addSubview(label)
         self.view.addSubview(button)
+        
         self.label.translatesAutoresizingMaskIntoConstraints = false
         self.button.translatesAutoresizingMaskIntoConstraints = false
-        
+        animationView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
+            animationView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            animationView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            animationView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            animationView.bottomAnchor.constraint(equalTo: self.label.topAnchor, constant: -20),
             label.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            label.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: -50),
+            label.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 50),
             button.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             button.topAnchor.constraint(equalTo: label.bottomAnchor,constant: 50)
-                                        
-        ])
+        ])        
+        animationView.loopMode = .loop
+        animationView.play()
     }
     
     

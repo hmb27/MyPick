@@ -14,7 +14,7 @@ class RecentlyWatched:  UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(red: 0.9686, green: 0.9686, blue: 0.9294, alpha: 1)
         title = "Recently Watched"
         
     }

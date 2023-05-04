@@ -30,15 +30,17 @@ class SearchController: UIViewController, UISearchBarDelegate, UITableViewDataSo
         self.navigationController?.navigationBar.barTintColor = UIColor.white
         searchBar.placeholder = "Search Your Apps"
         searchBar.delegate = self
+        searchBar.backgroundColor = UIColor(red: 0.8902, green: 0.9294, blue: 0.9059, alpha: 1)
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.backgroundColor = UIColor(red: 0.9686, green: 0.9686, blue: 0.9294, alpha: 1)
         tableView.register(DataCell.self, forCellReuseIdentifier: reuseIdentifier)
         view.addSubview(tableView)
         view.addSubview(searchBar)
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = UIColor(red: 0.9686, green: 0.9686, blue: 0.9294, alpha: 1)
         
         //header view - color change
-        headerView.backgroundColor = .white
+        headerView.backgroundColor = UIColor(red: 0.9686, green: 0.9686, blue: 0.9294, alpha: 1)
         view.addSubview(headerView)
         
         //reference to current user logged in

@@ -26,6 +26,7 @@ class UsersAppsController:  UIViewController, UITableViewDataSource, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         db = Firestore.firestore()
+        view.backgroundColor = UIColor(red: 0.8902, green: 0.9294, blue: 0.9059, alpha: 1)
         self.navigationController?.navigationBar.barTintColor = UIColor.white
         tableView.frame = view.frame
         tableView.dataSource = self
@@ -134,6 +135,21 @@ class UsersAppsController:  UIViewController, UITableViewDataSource, UITableView
             } else {
                 self.serviceArray.remove(at: sender.tag)
                 self.tableView.reloadData() // update table view
+            }
+        }
+    }
+    
+    //LOG OUT FUNCTION
+    @objc private func didTapLogOut() {
+        AuthService.shared.signOut { [weak self] error in
+            guard let self = self else { return }
+            if let error = error {
+                AlertManager.showLogoutError(on: self, with: error)
+                return
+            }
+            if let sceneDelegate = self.view.window?.windowScene?.delegate as?
+                SceneDelegate {
+                sceneDelegate.checkAuthentication()
             }
         }
     }

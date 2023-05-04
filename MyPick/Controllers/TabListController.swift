@@ -28,6 +28,7 @@ class TabListController: UIViewController, UITableViewDelegate, UITableViewDataS
     override func viewDidLoad() {
         super.viewDidLoad()
         db = Firestore.firestore()
+        let logoutButton = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(didTapLogOut))
         // Create table view
         let tableView = UITableView(frame: view.bounds, style: .grouped)
         tableView.delegate = self
@@ -72,7 +73,7 @@ class TabListController: UIViewController, UITableViewDelegate, UITableViewDataS
         case 0:
             return 2
         case 1:
-            return 3
+            return 2
         default:
             return 0
         }
@@ -97,8 +98,6 @@ class TabListController: UIViewController, UITableViewDelegate, UITableViewDataS
                 cell.textLabel?.text = "Account"
             case 1:
                 cell.textLabel?.text = "Manage Subscriptions"
-            case 2:
-                cell.textLabel?.text = "Log Out "
             default:
                 break
             }
@@ -146,5 +145,21 @@ class TabListController: UIViewController, UITableViewDelegate, UITableViewDataS
             present(navigationController,animated: true,completion: nil)
         }
     }
+    
+    //LOG OUT FUNCTION
+    @objc private func didTapLogOut() {
+        AuthService.shared.signOut { [weak self] error in
+            guard let self = self else { return }
+            if let error = error {
+                AlertManager.showLogoutError(on: self, with: error)
+                return
+            }
+            if let sceneDelegate = self.view.window?.windowScene?.delegate as?
+                SceneDelegate {
+                sceneDelegate.checkAuthentication()
+            }
+        }
+    }
+
 }
 

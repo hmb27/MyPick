@@ -40,7 +40,7 @@ class PaymentList:  UIViewController, UITableViewDataSource, UITableViewDelegate
         
         //UILabel
         titleLabel.text = "Add your next subscription renewal date for your selected apps"
-        titleLabel.font = UIFont(name: "Helvetica", size: 20) // FIX TITLE TO LOOK NICER 
+        titleLabel.font = UIFont(name: "Helvetica", size: 30) // FIX TITLE TO LOOK NICER 
         titleLabel.adjustsFontSizeToFitWidth = true
         titleLabel.textAlignment = .center
         headerView.addSubview(titleLabel)

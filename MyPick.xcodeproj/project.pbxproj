@@ -169,6 +169,7 @@
 			children = (
 				609E9D1229B7B034001D3812 /* ForgotPasswordController.swift */,
 				609E9D1729B7B06D001D3812 /* RegisterController.swift */,
+				60A5435729BE6E4A00B5A9CC /* AlertManager.swift */,
 				609E9D1929B7B07F001D3812 /* HomeController.swift */,
 				609E9D1429B7B047001D3812 /* LoginController.swift */,
 				60426C1429C0878B0026EC1E /* ServiceList.swift */,
@@ -243,7 +244,6 @@
 			isa = PBXGroup;
 			children = (
 				60A5435929BE7D5C00B5A9CC /* AuthService.swift */,
-				60A5435729BE6E4A00B5A9CC /* AlertManager.swift */,
 				60BDCDB329BF3983004AFB34 /* Validator.swift */,
 				605BA5C029F9259F00AB9A92 /* MovieServices */,
 				60A5435629BE6E1C00B5A9CC /* Controllers */,

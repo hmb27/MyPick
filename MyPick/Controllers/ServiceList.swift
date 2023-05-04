@@ -26,6 +26,7 @@ class ServiceList: UIViewController, UITableViewDataSource, UITableViewDelegate 
         super.viewDidLoad()
         self.setupUI()
         db = Firestore.firestore()
+        view.backgroundColor = UIColor(red: 0.8902, green: 0.9294, blue: 0.9059, alpha: 1)
         tableView.frame = view.frame
         tableView.dataSource = self
         tableView.allowsSelection = true

@@ -38,6 +38,10 @@ class serviceLogIn:  UIViewController {
         self.setupUI()
         self.signInButton.addTarget(self, action: #selector(didTapSignIn), for: .touchUpInside)
         
+        
+        
+        
+        
     }
     
     
@@ -91,7 +95,7 @@ class serviceLogIn:  UIViewController {
     
     //MARK: Selectors
     @objc private func didTapSignIn() {
-        let vc = AccountController()
+        let vc = TabListController()
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
