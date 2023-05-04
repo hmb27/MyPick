@@ -78,8 +78,7 @@ class DataCell : UITableViewCell {
 }
 struct Service {
     let name: String
-    let url: String
-   // var movies: [Movie] = [] //to access the sub collections
+    let url: String   // var movies: [Movie] = [] //to access the sub collections
     //var tvShows: [TVShow] = [] // to access the sub collections
     }
 struct Movie {

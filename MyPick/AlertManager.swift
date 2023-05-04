@@ -112,6 +112,20 @@ extension AlertManager {
     public static func showUnknownDuplicateAddError(on vc: UIViewController) {
         self.showBasicAlert(on: vc, title: "Unknown Duplicate Error", message: nil)
     }
+    
 }
 
+extension AlertManager {
+    
+    public static func searchNotAvail(on vc: UIViewController, with error: Error) {
+        self.showBasicAlert(on: vc, title: "Sorry, the movie you searched for is not available on any of your services", message: "\(error.localizedDescription)")
+    }
+    
+    public static func searchNotAvailError(on vc: UIViewController) {
+        self.showBasicAlert(on: vc, title: "Unknown search error", message: nil)
+    }
+}
+
+
+                            
 

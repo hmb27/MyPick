@@ -111,14 +111,14 @@ class UsersAppsController:  UIViewController, UITableViewDataSource, UITableView
         }
         
         //adding the remove button to each cell
-        let connectButton = UIButton(type: .system)
-        connectButton.setTitle("Remove", for: .normal)
-        connectButton.addTarget(self, action: #selector(removeButtonTapped(_ :)), for: .touchUpInside)
-        connectButton.translatesAutoresizingMaskIntoConstraints = false
-        cell.contentView.addSubview(connectButton)
+        let removeButton = UIButton(type: .system)
+        removeButton.setTitle("Remove", for: .normal)
+        removeButton.addTarget(self, action: #selector(removeButtonTapped(_ :)), for: .touchUpInside)
+        removeButton.translatesAutoresizingMaskIntoConstraints = false
+        cell.contentView.addSubview(removeButton)
         NSLayoutConstraint.activate([
-            connectButton.centerYAnchor.constraint(equalTo: cell.contentView.centerYAnchor),
-            connectButton.trailingAnchor.constraint(equalTo: cell.trailingAnchor, constant: -20)
+            removeButton.centerYAnchor.constraint(equalTo: cell.contentView.centerYAnchor),
+            removeButton.trailingAnchor.constraint(equalTo: cell.trailingAnchor, constant: -20)
         ])
         
         return cell
