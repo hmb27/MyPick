@@ -68,7 +68,7 @@ class DataCell : UITableViewCell {
             dataTitleText.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
             
             connectButton.widthAnchor.constraint(equalToConstant: 100),
-            connectButton.heightAnchor.constraint(equalToConstant: 50), 
+            connectButton.heightAnchor.constraint(equalToConstant: 50),
             connectButton.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor),
             connectButton.centerXAnchor.constraint(equalTo: self.contentView.layoutMarginsGuide.trailingAnchor),
             //connectButton.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -16),
@@ -76,18 +76,16 @@ class DataCell : UITableViewCell {
         
     }
 }
-struct Service {
-    let name: String
-    let url: String   // var movies: [Movie] = [] //to access the sub collections
-    //var tvShows: [TVShow] = [] // to access the sub collections
+    
+    struct Service {
+        let name: String
+        let url: String
+        
     }
-struct Movie {
-    let movieTitle: String
-}
 
-struct TVShow {
-    let showTitle: String
-}
+    struct TVShow {
+        let showTitle: String
+    }
 
 
 

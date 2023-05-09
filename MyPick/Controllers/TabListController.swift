@@ -86,16 +86,16 @@ class TabListController: UIViewController, UITableViewDelegate, UITableViewDataS
         case 0:
             switch indexPath.row {
             case 0:
-                cell.textLabel?.text = "Your Apps"
+                cell.textLabel?.text = "Your Streaming Services"
             case 1:
-                cell.textLabel?.text = "Connect"
+                cell.textLabel?.text = "Connect Now"
             default:
                 break
             }
         case 1:
             switch indexPath.row {
             case 0:
-                cell.textLabel?.text = "Account"
+                cell.textLabel?.text = "Account Details"
             case 1:
                 cell.textLabel?.text = "Manage Subscriptions"
             default:

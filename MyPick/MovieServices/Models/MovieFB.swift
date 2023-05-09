@@ -11,7 +11,7 @@ struct MovieFB {
     let duration: String
     let genre: String
     let imdbRating: String
-    let movieTtitle: String
+    let movieTitle: String
     let poster: String
     let year: String
 }

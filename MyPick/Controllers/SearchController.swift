@@ -22,6 +22,7 @@ class SearchController: UIViewController, UISearchBarDelegate, UITableViewDataSo
     let headerView = UIView()
     var selectedService: Service?
     let tableView = UITableView()
+    let titleLabel = UILabel()
     
     
     override func viewDidLoad() {
@@ -31,14 +32,21 @@ class SearchController: UIViewController, UISearchBarDelegate, UITableViewDataSo
         searchBar.placeholder = "Search Your Apps"
         searchBar.delegate = self
         searchBar.backgroundColor = UIColor(red: 0.8902, green: 0.9294, blue: 0.9059, alpha: 1)
+        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = UIColor(red: 0.9686, green: 0.9686, blue: 0.9294, alpha: 1)
         tableView.register(DataCell.self, forCellReuseIdentifier: reuseIdentifier)
+        
+        view.addSubview(titleLabel)
         view.addSubview(tableView)
         view.addSubview(searchBar)
+        
         self.view.backgroundColor = UIColor(red: 0.9686, green: 0.9686, blue: 0.9294, alpha: 1)
         
+        titleLabel.text = "Available On:"
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 24)
+        titleLabel.textColor = .black
         //header view - color change
         headerView.backgroundColor = UIColor(red: 0.9686, green: 0.9686, blue: 0.9294, alpha: 1)
         view.addSubview(headerView)
@@ -50,6 +58,7 @@ class SearchController: UIViewController, UISearchBarDelegate, UITableViewDataSo
             } else if let user = user {
                 self.currentUser = user
                 self.db2 = self.db.collection("users").document(user.userUID ?? "").collection("userServices")
+                self.db.collection("users").document(user.userUID ?? "").collection("RecentlyWatched")
                 self.db2.getDocuments() { (QuerySnapshot, error ) in
                     if let error = error {
                         print("Error getting documents: \(error)")
@@ -62,6 +71,8 @@ class SearchController: UIViewController, UISearchBarDelegate, UITableViewDataSo
                                 self.serviceArray.append(service)
                             }}}}}}
         
+        
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
         searchBar.translatesAutoresizingMaskIntoConstraints = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -70,7 +81,12 @@ class SearchController: UIViewController, UISearchBarDelegate, UITableViewDataSo
             searchBar.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8),
             searchBar.heightAnchor.constraint(equalToConstant: 50),
             
-            tableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 8),
+            titleLabel.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 8),
+            titleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 8),
+            titleLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8),
+            titleLabel.heightAnchor.constraint(equalToConstant: 50),
+            
+            tableView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 8),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -8)
@@ -118,6 +134,8 @@ class SearchController: UIViewController, UISearchBarDelegate, UITableViewDataSo
             print("availableServices: \(availableServices)") //log message -  print line to check the correct services are being called with the available movie
             //self.tableView.reloadData() - removes UI BUG, displaying all userServices
         }
+        
+        
     }
     
     //call this function when the user clicks th search button
@@ -165,7 +183,6 @@ class SearchController: UIViewController, UISearchBarDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return serviceArray.count
     }
-        
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? DataCell else {
@@ -184,7 +201,7 @@ class SearchController: UIViewController, UISearchBarDelegate, UITableViewDataSo
                 }
             }
         }
-
+        
         //removing current incorrect connect button - UIBUG
         for subview in cell.contentView.subviews {
             if let button = subview as? UIButton {
@@ -202,7 +219,7 @@ class SearchController: UIViewController, UISearchBarDelegate, UITableViewDataSo
         
         watchButton.translatesAutoresizingMaskIntoConstraints = false
         imageView.translatesAutoresizingMaskIntoConstraints = false
-
+        
         
         NSLayoutConstraint.activate([
             watchButton.centerYAnchor.constraint(equalTo: cell.contentView.centerYAnchor),
@@ -211,14 +228,40 @@ class SearchController: UIViewController, UISearchBarDelegate, UITableViewDataSo
             imageView.leadingAnchor.constraint(equalTo: cell.leadingAnchor, constant: 20),
             imageView.widthAnchor.constraint(equalToConstant: 30),
             imageView.heightAnchor.constraint(equalToConstant: 30)
-            ])
+        ])
         return cell
     }
-    
-    
     @objc func watchNow(_ sender: UIButton) {
+        guard let cell = sender.superview?.superview as? DataCell,
+              let indexPath = tableView.indexPath(for: cell) else {
+            return
         }
         
+        let selectedService = serviceArray[indexPath.row]
+        let moviesCollection = db2.document(selectedService.name).collection("movies")
+        let selectedMovie = moviesCollection.whereField("MovieTitle", isEqualTo: searchBar.text ?? "").getDocuments { (querySnapshot, error ) in
+            if let error = error {
+                print("error getting documents: \(error)")
+            } else if let doc = querySnapshot?.documents.first {
+                var movie = doc.data()
+                movie["serviceWatchedOn"] = selectedService.name
+                self.addMovieToRecentlyWatched(movie: movie) {
+                    
+                    let vc = LoadingController()
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            }
+            
+        }
+        
+    }
+    
+    func addMovieToRecentlyWatched(movie: [String: Any], completion: @escaping () -> Void) {
+            if let currentUser = currentUser {
+                db.collection("users").document(currentUser.userUID ?? "").collection("RecentlyWatched").addDocument(data: movie)
+                completion()
+            }
+        }
     }
 
 

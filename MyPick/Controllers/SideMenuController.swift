@@ -28,6 +28,7 @@ class SideMenuController: UITableViewController {
         db = Firestore.firestore()
         view.backgroundColor = UIColor(red: 0.9686, green: 0.9686, blue: 0.9294, alpha: 1)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.backgroundColor = UIColor(red: 0.9686, green: 0.9686, blue: 0.9294, alpha: 1)
         
         
         //reference to current user logged in
@@ -67,7 +68,7 @@ class SideMenuController: UITableViewController {
         case 0:
             cell.textLabel?.text = "Account Details"
         case 1:
-            cell.textLabel?.text = "Your Apps"
+            cell.textLabel?.text = "Your Streaming Services"
         case 2:
             cell.textLabel?.text = "Connect"
         case 3:

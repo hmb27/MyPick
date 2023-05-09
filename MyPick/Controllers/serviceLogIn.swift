@@ -9,20 +9,20 @@ import UIKit
 import FirebaseStorage
 import FirebaseFirestore
 import FirebaseDatabase
+import FirebaseAuth
 
 class serviceLogIn:  UIViewController {
     
-    /*override func viewDidLoad() {
-     super.viewDidLoad()
-     view.backgroundColor = .black*/
+    
+    let reuseIdentifier = "DataCell"
+    var serviceArray: [Service] = []
+    var db: Firestore!
+    var db2: CollectionReference!
+    var currentUser: User?
+    let resultsLabel = UILabel()
+    //let headerView = UIView()
     
     
-    /*let labelRect = CGRect(x: 50, y: 100, width: 200, height: 100)
-     let label = UILabel(frame: labelRect)
-     label.textColor = .white
-     label.text  = "INSIDE SERVICE LOGIN"
-     label.numberOfLines = 2
-     view.addSubview(label)*/
     
     //MARK: - UI Components
     private let headerView = serviceHeaderView(title: "Sign In", subTitle: "Sign into your account now")
@@ -35,10 +35,34 @@ class serviceLogIn:  UIViewController {
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        db = Firestore.firestore()
         self.setupUI()
         self.signInButton.addTarget(self, action: #selector(didTapSignIn), for: .touchUpInside)
         
-        
+        //reference to current user logged in
+        AuthService.shared.fetchUser { user, error in
+            if let error = error {
+                print("Error fetching user: /(error.localizedDescription)")
+            } else if let user = user {
+                self.currentUser = user
+                self.db2 = self.db.collection("users").document(user.userUID ?? "").collection("userServices")
+                self.db2.getDocuments() { (QuerySnapshot, error ) in
+                    if let error = error {
+                        print("Error getting documents: \(error)")
+                    } else {
+                        for document in QuerySnapshot!.documents {
+                            let data = document.data()
+                            if let name = data["name"] as? String,
+                               let url = data["url"] as? String {
+                                let service = Service(name: name, url: url)
+                                self.serviceArray.append(service)
+                            }
+                        }
+                    }
+                }
+                
+            }
+        }
         
         
         
@@ -95,6 +119,29 @@ class serviceLogIn:  UIViewController {
     
     //MARK: Selectors
     @objc private func didTapSignIn() {
+        AuthService.shared.fetchUser { user, error in
+            if let error = error {
+                print("Error fetching user: /(error.localizedDescription)")
+            } else if let user = user {
+                self.currentUser = user
+                self.db2 = self.db.collection("users").document(user.userUID ?? "").collection("userServices")
+                self.db2.getDocuments() { (QuerySnapshot, error ) in
+                    if let error = error {
+                        print("Error getting documents: \(error)")
+                    } else {
+                        for document in QuerySnapshot!.documents {
+                            let data = document.data()
+                            if let name = data["name"] as? String,
+                               let url = data["url"] as? String {
+                                let service = Service(name: name, url: url)
+                                self.serviceArray.append(service)
+                            }
+                        }
+                    }
+                }
+                
+            }
+        }
         let vc = TabListController()
         self.navigationController?.pushViewController(vc, animated: true)
     }

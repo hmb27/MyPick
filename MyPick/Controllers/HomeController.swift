@@ -24,7 +24,7 @@ class HomeController: UIViewController {
     // button
     private let button: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 200, height: 52))
-        button.setTitle("Too Lazy to Search? Its ok..Tap to start", for: .normal)
+        button.setTitle("Too lazy to search? Its ok..Tap to start", for: .normal)
         button.backgroundColor = UIColor(red: 0.8902, green: 0.9294, blue: 0.9059, alpha: 1)
         button.setTitleColor(.black, for: .normal)
         return button
@@ -46,7 +46,7 @@ class HomeController: UIViewController {
                 return
             }
             if let user = user {
-                self.label.text = "Welcome Back \(user.username)\n"
+                self.label.text = "Welcome \(user.username)\n"
             }
         }
         
